@@ -28,7 +28,7 @@ class m181224_032452_create_user_model extends Migration
 
         $this->insert('user', [
             'username' => 'admin',
-            'password' => Yii::$app->getSecurity()->generatePasswordHash('admin'),
+            'password' => \Yii::$app->getSecurity()->generatePasswordHash('admin'),
             'email'=>'email@email.com',
             'first_name'=>'chrv',
             'last_name' => 'chrv',
