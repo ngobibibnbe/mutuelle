@@ -27,15 +27,23 @@ SemanticAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="ui sidebar inverted vertical menu">
+<div class="ui sidebar vertical menu">
     <a class="item">
-      1
+membre de la mutuelle    </a>
+    <a class="item">
+      action social 
     </a>
     <a class="item">
-      2
+      emprunter
     </a>
     <a class="item">
-      3
+      rembourser
+    </a>
+    <a class="item">
+      rembourser
+    </a>
+    <a class="item">
+      quitter
     </a>
   </div>
 
