@@ -21,7 +21,6 @@ $this->title = 'Login';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -41,24 +40,29 @@ $this->title = 'Login';
         'validatingCssClass'=>"loading",
         'fieldConfig' => [
             'template' => "{label}{input}{error}",
-            'errorOptions'=>['class'=>"ui error message"],
+            'errorOptions'=>['class'=>"ui red"],
             //'labelOptions' => ['class' => 'ui label'],
             'options' => ['class' => 'field']
         ],
     ]); ?>
-        <h1 class="ui dividing header" style="margin-bottom:100px"><?= Html::encode($this->title) ?></h1>
+        <?= Html::tag('h1',Html::encode($this->title),[
+                'class' =>'ui dividing header center aligned',
+                'style' =>'margin-bottom:100px'
+            ])?>
+        
         <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label("Nom d'utilisateur") ?>
 
         <?= $form->field($model, 'password')->passwordInput()->label("Mot de passe") ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            //'template'=>"<div class=\"ui slider checkbox\">{label}{input}</div>"
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            ],false)->label('Se souvenir de moi') ?>
+            
+        <?= Html::tag('div',
+            Html::tag('input','',['type'=>'checkbox',"name"=>"LoginForm[rememberMe]"])
+            .Html::tag('label','Se souvenir de moi').'<br>',
+            ['class'=>'ui checkbox']
+        )?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Se connecter', ['class' => 'ui submit button', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Se connecter', ['class' => 'ui positive fluid button', 'name' => 'login-button']) ?>
             </div>
         </div>
         <br>
@@ -75,7 +79,7 @@ $this->title = 'Login';
 <script>
     $(document).ready( function () { 
         $('.ui.form').submit(function(event){
-            if($('.error').length<=3)
+            if($('.error').length===0)
                 $('.ui.form').addClass('loading');
         });
     });
@@ -90,19 +94,27 @@ body{
     margin: 0;
     padding: 10px ;
     width: 100%;
-    //*display:table;*/
+    display:table;
 }
 
 .site-login{
     vertical-align:middle;
-    text-align:center;
-    display:/*table-cell*/ flex;
+    /*text-align:center;*/
+    display:table-cell;
     width:100%;
-    height:100%;
-    justify-content:center;
-    /*width:50%;
-    max-width:400px;*/
 }
+
+#login-form{
+    margin:auto;
+    max-width:400px
+}
+
+.ui.red{
+    color:#9f3a38;
+    text-align:center;
+}
+
+
 
 </style>
 </body>
