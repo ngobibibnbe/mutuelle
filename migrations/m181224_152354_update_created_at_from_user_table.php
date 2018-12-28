@@ -23,7 +23,7 @@ class m181224_152354_update_created_at_from_user_table extends Migration
     public function safeDown()
     {
         echo "m181224_152354_update_created_at_from_user_table cannot be reverted.\n";
-        return false;
+        
     }
 
     /*

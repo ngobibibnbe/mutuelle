@@ -1,53 +1,70 @@
 <?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
+<style>
+fieldset{        width:500px ;border:solid rgb(0,0,0);padding:15px;
+    background-color:white;
+}
+}p {text-align: center;}
+.f1 p {text-align: center;font-size:30px;}
+body{
+    background-image: url('piggy-3612928_1920.jpg') ;
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+text-align
+}
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+div div.f1{ ;font-color:green;}
+td{border:solid green; width:48%;height:400px;padding:10px;}
+</style>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+  <h1>premiere page des utilisateurs </h1>
+<div><?php $customer[0]->code?> y</div>
+<div></div>
+  <?php foreach ($sum as $sums):?> 
+  <?php foreach ($dette as $dettes):?> 
+  <table>
+            <tr><td style="width: 55%;">
+            <div class="f1" style="float:left">
+<?php foreach ($customer as $connection):?> 
+<p><b><?php $sop= $connection->user;?> 
+<?= Html::encode("{$sop}") ?></b> Bienvenu sur votre compte vous avez un montant de :<b><?= Html::encode("{$connection->avoir}") ?></b>fcfa 
+et une dette de <b><?= Html::encode("{$connection->dette}") ?></b>fcfa  que vous avez prise le 
+:<b><?= Html::encode("{$connection->dettedate}") ?></b>
+</p> 
+<?php endforeach; ?>
+</div>         
+            </td  style="width: 45%;height:150px;">
+<td><div class="f1" style="margin-left:20px;float:right;">
+        <img src="views\connections\piggy-3612928_1920.jpg" alt="ici on doit ajouter les urls des images dans la bd et les recuperer pour les ajouters" srcset="views\connections\piggy-3612928_1920.jpg" style="width: 40%;height:150px;">
+        </div></td>
+        </tr>
+        <tr>
+         <td><table><tr><td style="width:65%;">
+         <div style="background-color:blue;width:130px;padding:5px;"><p><b>Your money state </b></p><div style="margin:5px;background-color:white;height:95px;">
 
-    <div class="body-content">
+<p>you have:<?= Html::encode("{$connection->avoir}") ?>fcfa</p>
+<p>you borrowed:<?= Html::encode("{$connection->dette}") ?>fcfa</p><div>
+</div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+         </td><td style="width:49%;">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+         <div style="background-color:blue;width:130px;padding:5px;"><p><b>This is the mutual state </b></p><div style="margin:5px;background-color:white;height:95px;">
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+<p> having:<?= Html::encode("{$sums->avoir}") ?>fcfa</p>
+<p>borrowed-money:<?= Html::encode("{$dettes->dette}") ?>fcfa</p><div>
+</div>
+         </td></tr></table>
+</td>   
+         <td> </td>
+        </tr>
+        </table>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
+        <?php endforeach; ?><?php endforeach; ?>
 </div>

@@ -27,32 +27,14 @@ SemanticAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="ui sidebar vertical menu">
-    <a class="item">
-membre de la mutuelle    </a>
-    <a class="item">
-      action social 
-    </a>
-    <a class="item">
-      emprunter
-    </a>
-    <a class="item">
-      rembourser
-    </a>
-    <a class="item">
-      rembourser
-    </a>
-    <a class="item">
-      quitter
-    </a>
-  </div>
+
 
 
     <?php
     echo Menu::widget([
         'options'=>[
             'tag'=>'div',
-            'class' =>'ui large sticky top attached segment pointing menu',
+            'class' =>'ui tiny inverted sticky top attached segment pointing menu ',
         ],
         'itemOptions'=>[
             'tag'=>false,
@@ -81,15 +63,26 @@ membre de la mutuelle    </a>
     ?>
 <div class="ui attached segment pushable"id="push">
     <div class="ui sidebar inverted vertical menu">
-        <a class="item">
-        1
-        </a>
-        <a class="item">
-        2
-        </a>
-        <a class="item">
-        3
-        </a>
+    <a class="item">
+membre de la mutuelle    </a>
+    <a class="item">
+      action social 
+    </a>
+    <a class="item">
+      emprunts
+    </a>
+    <a class="item">
+      remboursements
+    </a>
+    <a class="item">
+     epargnes
+    </a>
+    <a class="item">
+      session
+    </a>
+    <a class="item">
+      paramètres
+    </a>
     </div>
     <div class="pusher">
         <div class="ui basic segment" id="stick">
