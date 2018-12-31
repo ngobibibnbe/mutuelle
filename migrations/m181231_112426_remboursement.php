@@ -3,23 +3,20 @@ use yii\db\Expression;
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `emprunt`.
+ * Class m181231_112426_remboursement
  */
-class m181227_170358_create_emprunt_table extends Migration
+class m181231_112426_remboursement extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('emprunt', [
+        $this->createTable('remboursement', [
             'id' => $this->primaryKey(),
             "session_id" => $this->integer(),
-            "user_id" => $this->integer()->notNull(),
-            "amount" => $this->integer(),
-            "percentage" => $this->float(),
-            "delay" => $this->integer()->defaultValue(3),
-            "state" => $this->tinyInteger()->defaultValue(0), //0 pour waittng;reject;accept;
+            "emprunt_id" => $this->integer()->notNull(),
+            "tranche" => $this->integer()->defaultValue(0),
             "created_at" => $this->dateTime()->defaultValue(new Expression('now()')), // date d'ajout dans la base de donnée
             "auth_key" => $this->string(),
 
@@ -27,16 +24,16 @@ class m181227_170358_create_emprunt_table extends Migration
 
         // add foreign key for table `post`
         $this->addForeignKey(
-            'fk-emprunt-user',
+            'fk-remboursement-emprunt',
+            'remboursement',
+            'emprunt_id',
             'emprunt',
-            'user_id',
-            'user',
             'id',
             'CASCADE'
         );
         $this->addForeignKey(
-            'fk-emprunt-session',
-            'emprunt',
+            'fk-remboursement-session',
+            'remboursement',
             'session_id',
             'session',
             'id',
@@ -49,6 +46,21 @@ class m181227_170358_create_emprunt_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('emprunt');
+        $this->dropTable('remboursement');
     }
+
+    /*
+// Use up()/down() to run migration code without a transaction.
+public function up()
+{
+
+}
+
+public function down()
+{
+echo "m181231_112426_remboursement cannot be reverted.\n";
+
+return false;
+}
+ */
 }
