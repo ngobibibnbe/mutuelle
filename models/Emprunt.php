@@ -1,0 +1,102 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "emprunt".
+ *
+ * @property int $id
+ * @property int $session_id
+ * @property int $user_id
+ * @property int $money
+ * @property double $percentage
+ * @property int $delay
+ * @property int $state
+ * @property int $finish
+ * @property string $created_at
+ * @property string $auth_key
+ *
+ * @property Session $session
+ * @property User $user
+ * @property Remboursement[] $remboursements
+ */
+class Emprunt extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'emprunt';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['session_id', 'user_id', 'money', 'delay', 'state', 'finish'], 'integer'],
+            [['user_id'], 'required'],
+            [['percentage'], 'number'],
+            [['created_at'], 'safe'],
+            [['auth_key'], 'string', 'max' => 255],
+            [['session_id'], 'exist', 'skipOnError' => true, 'targetClass' => Session::className(), 'targetAttribute' => ['session_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'session_id' => 'Session ID',
+            'user_id' => 'User ID',
+            'money' => 'Money',
+            'percentage' => 'Percentage',
+            'delay' => 'Delay',
+            'state' => 'State',
+            'finish' => 'Finish',
+            'created_at' => 'Created At',
+            'auth_key' => 'Auth Key',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSession()
+    {
+        return $this->hasOne(Session::className(), ['id' => 'session_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRemboursements()
+    {
+        return $this->hasMany(Remboursement::className(), ['emprunt_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return EmpruntQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new EmpruntQuery(get_called_class());
+    }
+}
