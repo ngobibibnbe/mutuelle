@@ -1,29 +1,65 @@
 <?php
-
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 use app\assets\SemanticAsset;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
-
 SemanticAsset::register($this);
 ?>
-<?php $this->beginPage()?>
+<?php $this->beginPage();?>
 <!DOCTYPE html>
-<html lang="<?=Yii::$app->language?>">
+<html lang="<?=Yii::$app->language;?>">
+
 <head>
-    <meta charset="<?=Yii::$app->charset?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?=Html::csrfMetaTags()?>
-    <title><?=Html::encode($this->title)?></title>
-    <?php $this->head()?>
+    <meta charset="<?=Yii::$app->charset;?>">
+    <?=Html::csrfMetaTags();?>
+    <title>
+        <?=Html::encode($this->title);?>
+    </title>
+    <?php $this->head();?>
 </head>
+
 <body>
-<?php $this->beginBody()?>
+    <?php $this->beginBody();?>
+
+    <div class="ui sidebar inverted vertical menu">
+
+
+
+    <div class="item">
+            <div class="header"> <a class="item"><b> <i class="user icon"></i> profils</b></a></div>
+            <div class="menu">
+
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="header"><a class="item"><b><i class="plus icon"></i> nouvelle session</b></a></div>
+            <div class="menu">
+                <a class="item">Retrait</a>
+                <a class="item">Epargne</a>
+                <a class="item">Emprunt</a>
+                <a class="item">Remboursement</a>
+                <a class="item">Font Social</a>
+
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="header"><a class="item" href= "/user" ><b>  <i class="users icon"></i> Utilisateur</b></a></div>
+            <div class="menu">
+            </div>
+        </div>
+        <div class="item">
+            <div class="header"><a class="item"><b> <i class="handshake  icon "></i> Bilan de la mutuelle</b></a></div>
+            <div class="menu">
+
+            </div>
+        </div>
+    </div>
 
 
 
@@ -32,7 +68,7 @@ SemanticAsset::register($this);
 echo Menu::widget([
     'options' => [
         'tag' => 'div',
-        'class' => 'ui tiny inverted sticky top attached segment pointing menu ',
+        'class' => 'ui inverted sticky top attached segment pointing menu ',
     ],
     'itemOptions' => [
         'tag' => false,
@@ -52,65 +88,67 @@ echo Menu::widget([
                 ],
             ],
         ],
-
     ],
     'submenuTemplate' => '<div class="right menu">{items}</div>',
     'linkTemplate' => '<a class="item" href="{url}">{label}</a>',
 ]);
-
 ?>
-<div class="ui attached segment pushable"id="push">
-    <div class="ui sidebar inverted vertical menu">
-    <a class="item">
-membre de la mutuelle    </a>
-    <a class="item">
-      action social
-    </a>
-    <a class="item">
-      emprunts
-    </a>
-    <a class="item">
-      remboursements
-    </a>
-    <a class="item">
-     epargnes
-    </a>
-    <a class="item">
-      session
-    </a>
-    <a class="item">
-      paramètres
-    </a>
-    </div>
-    <div class="pusher">
+    <div class="ui basic segment " id="push">
+
+
         <div class="ui basic segment" id="stick">
             <?=Breadcrumbs::widget([
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-])?>
-            <?=Alert::widget()?>
-            <?=$content?>
+    'itemTemplate' => '<i class="right chevron icon divider"></i>{link}',
+    'activeItemTemplate' => '<i class="right arrow icon divider"></i>{link}',
+    'tag' => 'div',
+    'options' => ['class' => 'ui breadcrumb'],
+
+]);?>
+            <?=Alert::widget();?>
+            <?=$content;?>
         </div>
     </div>
-</div>
 
 
-<div class="ui bottom inverted vertical footer segment">
-    <div class="ui center aligned container">
-        <p class="ui left inline">&copy; My Company <?=date('Y')?></p>
+    <div class="ui footer inverted vertical segment">
+        <div class="ui center aligned container">
+            <p class="ui left inline">
+                &copy; My Company
+                <?=date('Y');?>
+            </p>
 
-        <p class="ui right inline"><?=Yii::powered()?></p>
+            <p class="ui right inline">
+                <?=Yii::powered();?>
+            </p>
+        </div>
     </div>
-</div>
 
-<?php $this->endBody()?>
-<script>
-    $(document).ready(function(){
-        $('.ui.sidebar').sidebar({context:$('#push'),dimPage:false})
-            .sidebar('attach events', '#sidebar','toggle')
-            .sidebar('setting', 'transition', 'slide along')
-        $('.ui.sticky').sticky({context:$('.pusher')});
-    })
-</script>
+    <?php $this->endBody();?>
+    <style>
+        #push{
+            margin-bottom:100px;
+        }
+        .ui.footer { /* Increased specificity for SO snippet priority */
+        height:75px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+     }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $('.ui.sidebar').sidebar({
+                    context: $('body'),
+                    dimPage: false
+                })
+                .sidebar('attach events', '#sidebar', 'toggle')
+                .sidebar('setting', 'transition', 'slide along')
+            $('.ui.sticky').sticky();
+        })
+    </script>
 </body>
+
 </html>
-<?php $this->endPage()?>
+<?php $this->endPage();?>

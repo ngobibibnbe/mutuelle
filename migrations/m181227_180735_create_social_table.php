@@ -14,17 +14,13 @@ class m181227_180735_create_social_table extends Migration
     {
         $this->createTable('social', [
             'id' => $this->primaryKey(),
-            "user_id"=>$this->integer()->notNull()->unique(),
-            "money"=>$this->integer(),
-            "dette"=>$this->integer()->defaultValue(0),
-            "delay"=>$this->integer(),
-            "state"=>$this->tinyInteger()->defaultValue(0),//0 pour waittng;reject;accept;
-            "created_at"=>$this->dateTime()->defaultValue(new Expression('now()')),                               // date d'ajout dans la base de donnée
-            "auth_key"=>$this->string(),
+            "user_id" => $this->integer()->notNull()->unique(),
+            "money" => $this->integer(),
+            "description" => $this->integer()->defaultValue(0),
+            "created_at" => $this->dateTime()->defaultValue(new Expression('now()')), // date d'ajout dans la base de donnée
+            "auth_key" => $this->string(),
 
         ]);
-
-      
 
         // add foreign key for table `post`
         $this->addForeignKey(
@@ -35,9 +31,8 @@ class m181227_180735_create_social_table extends Migration
             'id',
             'CASCADE'
         );
-       
-    }
 
+    }
 
     /**
      * {@inheritdoc}

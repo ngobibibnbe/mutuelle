@@ -10,9 +10,7 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $money
- * @property int $dette
- * @property int $delay
- * @property int $state
+ * @property int $description
  * @property string $created_at
  * @property string $auth_key
  *
@@ -35,7 +33,7 @@ class Social extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'money', 'dette', 'delay', 'state'], 'integer'],
+            [['user_id', 'money', 'description'], 'integer'],
             [['created_at'], 'safe'],
             [['auth_key'], 'string', 'max' => 255],
             [['user_id'], 'unique'],
@@ -52,9 +50,7 @@ class Social extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'money' => 'Money',
-            'dette' => 'Dette',
-            'delay' => 'Delay',
-            'state' => 'State',
+            'description' => 'Description',
             'created_at' => 'Created At',
             'auth_key' => 'Auth Key',
         ];
