@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
     ]);?>
     
     <div class="ui accordion field">
-        <div class="title active"><i class="icon dropdown"></i> Ajouter des filtres </div>
+        <div class="title"><i class="icon dropdown"></i> Ajouter des filtres </div>
         <div class="content ">
             <div class="two fields">
                 <?=$form->field($model, 'first_name')?>
@@ -42,12 +42,6 @@ use yii\widgets\ActiveForm;
             <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email'],])?>
             <?=$form->field($model, 'created_at',['inputOptions' => ['type' => 'date'],])?>
             </div>
-            <?php echo $form->field($model, 'id') ?>
-
-            <?php echo $form->field($model, 'social_font') ?>
-
-            <?php echo $form->field($model, 'username') ?>
-
             <?php // echo $form->field($model, 'tel') ?>
             <div>
                 <?=Html::resetButton('Réinitialiser', ['class' => 'ui secondary button'])?>
