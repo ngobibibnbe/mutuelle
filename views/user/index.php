@@ -2,7 +2,9 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\i18n\Formatter;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -10,77 +12,53 @@ use yii\widgets\Pjax;
 $this->title = 'ENSP MUTUAL USER';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index" style="width:50%;margin:auto;">
+<div class="user-index" >
 
     <h1><?=Html::encode($this->title)?></h1>
     <br><br>
     <?php Pjax::begin();?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?=Html::a('<span class="glyphicon glyphicon-user"> <i class="icon user plus"></i></span>', ['create'], ['class' => 'btn btn-success'])?>
+        <?=Html::a('<i class="icon user plus"></i>Ajouter un utilisateur', ['create'], ['class' => 'ui right labeled icon primary button'])?>
     </p>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
 <br><br>
 <div >
     <?=GridView::widget([
     'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
+    //'filterModel' => $searchModel,
     'columns' => [
-        // ['class' => 'yii\grid\SerialColumn'],
-
         [
             'attribute' => 'image',
-            'label' => ' profile',
-            //'filter' => '',
+            'label' => '',
             'content' => function ($data) {
-                $class = Html::label(
-                    '<h4 class="ui image header "><a class="imageclickable">
-          <img  src="' . $data->getimage() . '" class="ui mini rounded image ">
-          <div class="content">
-            ' . $data->getusername() . '
-
-        </div></a>
-      </h4><img src="' . $data->getimage() . '"
-       data-title="' . $data->getusername() . 'Matricule ' . $data->getusername() . '" data-content="' . $data->getusername() . 'est un membre de la mutuelle depuis
-        ' . $data->getcreated_at() . '" class="ui avatar image">'
-                );
-
-                return $class;
+                return '<img src="' . $data->image . '" class="ui avatar image"></img>';
             },
-            //TblCategory::get_status(),
         ],
-
-        /* [
-        'attribute' => 'id',
-        'label' => 'matricule',
-        'format' => 'text', //raw, html
-        'content' => function ($data) {
-        return $data->getid();
-        },
-        ],*/
-
+        'first_name',
+        'last_name',
+        'username',
         'email:email',
-        //'password',
-        //'first_name',
-        //'last_name',
-
         [
             'attribute' => 'is_active',
-            'label' => 'actif ?',
+            'options' => ['class' => 'centered aligned'],
+            'label' => 'actif',
             'filter' => array("1" => "Active", "0" => "Inactive"),
             'content' => function ($data) {
-                $class = $data->getis_active() == 1 ? Html::label(
-                    '<a class="ui black circular label"></a>') : Html::label(
-                    '<a class="ui grey circular label"></a>');
-
+                $class = Html::tag(
+                    'i', '',
+                    ['class' => $data->is_active === 1 ? "large green checkmark icon" : "large red close icon"]);
                 return $class;
             },
-            //TblCategory::get_status(),
         ],
-        'social_font',
-        //'created_at',
-        //'auth_key',
-
+        [
+            'attribute' => 'social_font',
+            'content' => function ($data) {
+                return (new Formatter)->asInteger($data->social_font);
+            },
+        ],
+        "created_at:date:Date d'ajout",
         ['class' => 'yii\grid\ActionColumn',
             'header' => 'Action',
             'headerOptions' => ['width' => '80'],
@@ -88,8 +66,8 @@ $this->title = 'ENSP MUTUAL USER';
             'buttons' => [
                 'update' => function ($url, $model) {
                     return Html::a(
-                        '<span class="glyphicon glyphicon-user"> <i class="icon edit"></i> </span>',
-                        $url);
+                        '<i class="icon edit"></i>',
+                        $url, ['class' => 'ui tiny basic circular icon button']);
                 },
                 /*  'delete' => function ($url, $model) {
             return Html::a(
@@ -102,11 +80,11 @@ $this->title = 'ENSP MUTUAL USER';
             ],
         ],
     ],
-    'options' => ['class' => 'grid-view gridview-newclass ui very basic collapsing celled table selectable'],
     'rowOptions' => function ($model, $key, $index, $grid) {
-        $class = $model->getis_admin() % 2 ? 'warning' : 'even';
+        $class = $model->getis_admin() === 1 ? 'positive' : '';
         return array('key' => $key, 'index' => $index, 'class' => $class);
     },
+    'tableOptions' => ['class' => 'ui celled table'],
 ]);?>
 </div>
     <?php Pjax::end();?>
