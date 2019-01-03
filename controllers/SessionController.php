@@ -56,10 +56,30 @@ class SessionController extends Controller
         if ($epargne->load(Yii::$app->request->post()) && $epargne->save()) {
             return $this->redirect(['/epargne/view', 'id' => $epargne->id]);
         }
+        $retrait = new \app\models\Retrait();
+        if ($retrait->load(Yii::$app->request->post()) && $retrait->save()) {
+            return $this->redirect(['/retrait/view', 'id' => $retrait->id]);
+        }
+        $emprunt = new \app\models\Emprunt();
+        if ($emprunt->load(Yii::$app->request->post()) && $emprunt->save()) {
+            return $this->redirect(['/emprunt/view', 'id' => $emprunt->id]);
+        }
+        $remboursement = new \app\models\Remboursement();
+        if ($remboursement->load(Yii::$app->request->post()) && $remboursement->save()) {
+            return $this->redirect(['/remboursement/view', 'id' => $remboursement->id]);
+        }
+        $social = new \app\models\Social();
+        if ($social->load(Yii::$app->request->post()) && $social->save()) {
+            return $this->redirect(['/social/view', 'id' => $social->id]);
+        }
 
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model, 'epargne' => new \app\models\Epargne(['session_id' => $model->id]),
+            'remboursement' => new \app\models\Remboursement(['session_id' => $model->id]),
+            'retrait' => new \app\models\Retrait(['session_id' => $model->id]),
+            'emprunt' => new \app\models\Emprunt(['session_id' => $model->id]),
+            'social' => new \app\models\Social(['session_id' => $model->id]),
         ]);
     }
 

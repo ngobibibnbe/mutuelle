@@ -62,19 +62,7 @@ class EpargneController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate2()
-    {
-        $model = new Epargne();
-        $model->loadDefaultValues();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create2', [
-            'model' => $model,
-        ]);
-    }
     public function actionCreate()
     {
         $model = new Epargne();

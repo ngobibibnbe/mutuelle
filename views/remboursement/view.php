@@ -11,32 +11,32 @@ $this->params['breadcrumbs'][] = ['label' => 'Remboursements', 'url' => ['index'
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="remboursement-view">
+<div class="remboursement-view" style="width:50%;margin:auto;>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Html::encode($this->title)?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?=Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+        <?=Html::a('Delete', ['delete', 'id' => $model->id], [
+    'class' => 'btn btn-danger',
+    'data' => [
+        'confirm' => 'Are you sure you want to delete this item?',
+        'method' => 'post',
+    ],
+])?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'session_id',
-            'emprunt_id',
-            'amount',
-            'tranche',
-            'created_at',
-            'auth_key',
-        ],
-    ]) ?>
+    <?=DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'session_id',
+        'emprunt_id',
+        'amount',
+        'tranche',
+        'created_at',
+        'auth_key',
+    ],
+])?>
 
 </div>

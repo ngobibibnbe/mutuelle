@@ -9,12 +9,12 @@ $this->title = 'Create Emprunt';
 $this->params['breadcrumbs'][] = ['label' => 'Emprunts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="emprunt-create">
+<div class="emprunt-create" style="width:50%;margin:auto;">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Html::encode($this->title)?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?=$this->render('_form', [
+    'model' => $model,
+])?>
 
 </div>
