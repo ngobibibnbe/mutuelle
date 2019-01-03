@@ -13,6 +13,7 @@ use Yii;
  * @property string $email
  * @property string $password
  * @property string $first_name
+ * @property string $image
  * @property string $last_name
  * @property int $is_admin
  * @property int $is_active
@@ -46,7 +47,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['username', 'email', 'password', 'first_name', 'last_name'], 'required'],
             [['is_admin', 'is_active'], 'boolean'],
             [['created_at'], 'safe'],
-            [['username', 'email', 'password', 'first_name', 'last_name', 'auth_key'], 'string', 'max' => 255],
+            [['username', 'email', 'password', 'first_name', 'last_name', 'auth_key', 'image'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
         ];
@@ -58,6 +59,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
+
             'id' => 'ID',
             'social_font' => 'Social Font',
             'username' => "Nom d'Utilisateur",
@@ -69,6 +71,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'is_active' => ' Actif',
             'created_at' => "Date d'ajout",
             'auth_key' => 'Auth Key',
+            'image' => 'image',
         ];
     }
 
@@ -162,6 +165,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getis_active()
     {
         return $this->is_active;
+    }
+    public function getimage()
+    {
+        return $this->image;
+    }
+    public function getusername()
+    {
+        return $this->username;
     }
     /**
      * {@inheritdoc}
