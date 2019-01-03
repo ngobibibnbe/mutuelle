@@ -65,6 +65,7 @@ class EpargneController extends Controller
     public function actionCreate2()
     {
         $model = new Epargne();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -77,6 +78,7 @@ class EpargneController extends Controller
     public function actionCreate()
     {
         $model = new Epargne();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

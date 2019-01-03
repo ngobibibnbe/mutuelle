@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
-use app\models\Emprunt;
 use app\modelsEmpruntSearch;
+use app\models\Emprunt;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * EmpruntController implements the CRUD actions for Emprunt model.
@@ -65,9 +65,10 @@ class EmpruntController extends Controller
     public function actionCreate()
     {
         $model = new Emprunt();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/emprunt/view', 'id' => $model->id]);
         }
 
         return $this->render('create', [

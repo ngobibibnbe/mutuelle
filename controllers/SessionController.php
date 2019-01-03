@@ -52,6 +52,11 @@ class SessionController extends Controller
      */
     public function actionView($id)
     {
+        $epargne = new \app\models\Epargne();
+        if ($epargne->load(Yii::$app->request->post()) && $epargne->save()) {
+            return $this->redirect(['/epargne/view', 'id' => $epargne->id]);
+        }
+
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model, 'epargne' => new \app\models\Epargne(['session_id' => $model->id]),
