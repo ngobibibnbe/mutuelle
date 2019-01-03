@@ -13,13 +13,23 @@ use yii\widgets\ActiveForm;
 
 
 
-<?php $form = ActiveForm::begin();?>
+<?php $form = ActiveForm::begin([
+    'validateOnType' => true,
+    'options' => ['class' => 'ui form', 'id' => 'login-form'],
+    'successCssClass' => 'success',
+    'errorCssClass' => 'error',
+    'errorSummaryCssClass' => 'ui error message',
+    'validatingCssClass' => 'loading',
+    'fieldConfig' => [
+        'template' => '{label}{input}{error}',
+        'errorOptions' => ['class' => 'ui red'],
+        //'labelOptions' => ['class' => 'ui label'],
+        'options' => ['class' => 'field '],
+    ],
+]);?>
 
-      <?=Html::tag('div',
-    Html::tag('input', '', ['type' => 'date', 'class' => 'field', "name" => "Session[date]"])
-    . Html::tag('label', '') . '<br>',
-    ['class' => 'ui ']
-)?>
+<?=$form->field($model, 'date')->input('date')?>
+
 <?=$form->field($model, 'state')->checkbox(array(
     'label' => '',
     'labelOptions' => array('style' => 'padding:5px;'),
@@ -29,7 +39,7 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?=Html::submitButton('Save', ['class' => 'btn btn-success'])?>
+        <?=Html::submitButton('Save', ['class' => 'btn btn-success green'])?>
     </div>
 
     <?php ActiveForm::end();?>

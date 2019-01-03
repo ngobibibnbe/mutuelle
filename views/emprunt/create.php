@@ -9,7 +9,7 @@ $this->title = 'Create Emprunt';
 $this->params['breadcrumbs'][] = ['label' => 'Emprunts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="emprunt-create" style="width:50%;margin:auto;">
+<div class="emprunt-create" >
 
     <h1><?=Html::encode($this->title)?></h1>
 

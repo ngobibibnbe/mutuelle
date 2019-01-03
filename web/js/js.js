@@ -28,5 +28,11 @@ $(document).ready(function () {
         $("#socialmodal").modal('show');
     });
 
+    $('imageclickable').click(function () {
+        $("ui.modal").modal('show');
+    });
+
+
+
 
 })

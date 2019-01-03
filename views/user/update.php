@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="user-update" style="width:60%;margin:auto;">
+<div class="user-update">
 
     <h1><?=Html::encode($this->title)?></h1>
 
@@ -20,4 +20,4 @@ $this->params['breadcrumbs'][] = 'Update';
 
 </div>
 <?php
-\app\assets\AppAsset::register($this);
+app\assets\AppAsset::register($this);

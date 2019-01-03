@@ -4,68 +4,68 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
+use app\assets\SemanticAsset;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\assets\SemanticAsset;
 
 SemanticAsset::register($this);
 
 $this->title = 'Login';
 ?>
-<?php $this->beginPage(); ?>
+<?php $this->beginPage();?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
-    <title><?= $this->title ?></title>
+    <title><?=$this->title?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags(); ?>
+    <?=Html::csrfMetaTags();?>
     <title>
-        <?= Html::encode($this->title); ?>
+        <?=Html::encode($this->title);?>
     </title>
-    <?php $this->head(); ?>
+    <?php $this->head();?>
 </head>
 
 <body>
-    <?php $this->beginBody(); ?>
+    <?php $this->beginBody();?>
     <div class="ui site-login">
 
 
 
         <?php $form = ActiveForm::begin([
-        'validateOnType' => true,
-        'options' => ['class' => 'ui form raised segment', 'id' => 'login-form'],
-        'successCssClass' => 'success',
-        'errorCssClass' => 'error',
-        'errorSummaryCssClass' => 'ui error message',
-        'validatingCssClass' => 'loading',
-        'fieldConfig' => [
-            'template' => '{label}{input}{error}',
-            'errorOptions' => ['class' => 'ui red'],
-            //'labelOptions' => ['class' => 'ui label'],
-            'options' => ['class' => 'field'],
-        ],
-    ]); ?>
-        <?= Html::tag('h1', Html::encode($this->title), [
-                'class' => 'ui dividing header center aligned',
-                'style' => 'margin-bottom:100px',
-            ]); ?>
+    'validateOnType' => true,
+    'options' => ['class' => 'ui form raised segment', 'id' => 'login-form'],
+    'successCssClass' => 'success',
+    'errorCssClass' => 'error',
+    'errorSummaryCssClass' => 'ui error message',
+    'validatingCssClass' => 'loading',
+    'fieldConfig' => [
+        'template' => '{label}{input}{error}',
+        'errorOptions' => ['class' => 'ui red'],
+        //'labelOptions' => ['class' => 'ui label'],
+        'options' => ['class' => 'field fluid'],
+    ],
+]);?>
+        <?=Html::tag('h1', Html::encode($this->title), [
+    'class' => 'ui dividing header center aligned',
+    'style' => 'margin-bottom:100px',
+]);?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label("Nom d'utilisateur"); ?>
+        <?=$form->field($model, 'username')->textInput(['autofocus' => true])->label("Nom d'utilisateur");?>
 
-        <?= $form->field($model, 'password')->passwordInput()->label('Mot de passe'); ?>
+        <?=$form->field($model, 'password')->passwordInput()->label('Mot de passe');?>
 
-        <?= Html::tag(
-                'div',
-            Html::tag('input', '', ['type' => 'checkbox', 'name' => 'LoginForm[rememberMe]'])
-            .Html::tag('label', 'Se souvenir de moi').'<br>',
-            ['class' => 'ui checkbox']
-        ); ?>
+        <?=Html::tag(
+    'div',
+    Html::tag('input', '', ['type' => 'checkbox', 'name' => 'LoginForm[rememberMe]'])
+    . Html::tag('label', 'Se souvenir de moi') . '<br>',
+    ['class' => 'ui checkbox']
+);?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Se connecter', ['class' => 'ui black fluid button', 'name' => 'login-button']); ?>
+                <?=Html::submitButton('Se connecter', ['class' => 'ui black fluid button', 'name' => 'login-button']);?>
             </div>
         </div>
         <br>
@@ -73,12 +73,12 @@ $this->title = 'Login';
             Veuillez remplir les champs ci dessus pour vous connecter.
         </div>
 
-        <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end();?>
 
 
 
     </div>
-    <?php $this->endBody(); ?>
+    <?php $this->endBody();?>
     <script>
         $(document).ready(function () {
             $('.ui.form').submit(function (event) {
@@ -121,4 +121,4 @@ $this->title = 'Login';
 </body>
 
 </html>
-<?php $this->endPage(); ?>
+<?php $this->endPage();?>

@@ -11,7 +11,7 @@ use Yii;
  * @property int $user_id
  * @property int $session_id
  * @property int $money
- * @property int $description
+ * @property string $description
  * @property string $created_at
  * @property string $auth_key
  *
@@ -35,10 +35,9 @@ class Social extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'session_id', 'money', 'description'], 'integer'],
+            [['user_id', 'session_id', 'money'], 'integer'],
             [['created_at'], 'safe'],
-            [['auth_key'], 'string', 'max' => 255],
-            [['user_id'], 'unique'],
+            [['description', 'auth_key'], 'string', 'max' => 255],
             [['session_id'], 'exist', 'skipOnError' => true, 'targetClass' => Session::className(), 'targetAttribute' => ['session_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

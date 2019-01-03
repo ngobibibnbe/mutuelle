@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Epargnes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="epargne-view" style="width:50%;margin:auto;>
+<div class="epargne-view" style="width:50%;margin:auto;">
 
     <h1><?=Html::encode($this->title)?></h1>
 
@@ -40,3 +40,5 @@ $this->params['breadcrumbs'][] = $this->title;
 ])?>
 
 </div>
+<?php
+app\assets\AppAsset::register($this);

@@ -20,4 +20,3 @@ $this->params['breadcrumbs'][] = 'Update';
 
 </div>
 <?php
-\app\assets\AppAsset::register($this);

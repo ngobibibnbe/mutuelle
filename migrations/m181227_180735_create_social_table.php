@@ -14,10 +14,10 @@ class m181227_180735_create_social_table extends Migration
     {
         $this->createTable('social', [
             'id' => $this->primaryKey(),
-            "user_id" => $this->integer()->notNull()->unique(),
+            "user_id" => $this->integer()->notNull(),
             "session_id" => $this->integer(),
             "money" => $this->integer(),
-            "description" => $this->integer()->defaultValue(0),
+            "description" => $this->String()->defaultValue("aide à"),
             "created_at" => $this->dateTime()->defaultValue(new Expression('now()')), // date d'ajout dans la base de donnée
             "auth_key" => $this->string(),
 
