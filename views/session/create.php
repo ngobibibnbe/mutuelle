@@ -9,7 +9,7 @@ $this->title = 'Create Session';
 $this->params['breadcrumbs'][] = ['label' => 'Sessions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="session-create">
+<div class="session-create" style="width:50%;margin:auto;">
 
     <h1><?=Html::encode($this->title)?></h1>
 
@@ -19,4 +19,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <?php
-\app\assets\AppAsset::register($this);

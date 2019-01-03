@@ -23,6 +23,26 @@ SemanticAsset::register($this);
 
 <body>
     <?php $this->beginBody();?>
+    <div class="ui basic modal" id="mainlogout">
+        <div class="ui icon header">
+            <i class="sign out alternate icon"></i>
+            Déconnexion
+        </div>
+        <div class="content">
+            <p>Voulez vous vraiment vous déconnecter?</p>
+        </div>
+        <?=Html::beginForm(['/site/logout'], 'post', ['class' => 'actions']);?>
+        <button type="reset" class="ui red basic cancel inverted button" id="modalCB">
+            <i class="remove icon"></i>
+            non
+        </button>
+
+        <button type="submit" class="ui green ok inverted button">
+            <i class="checkmark icon"></i>
+            oui
+        </button>
+        <?=Html::endForm()?>
+    </div>
 
     <div class="ui sidebar inverted vertical menu">
 
@@ -84,7 +104,7 @@ echo Menu::widget([
                 ['label' => '', 'url' => '#', 'template' => '<a class="right item" href="{url}"><i class="bell icon"></i>{label}</a>'],
                 ['label' => 'Se déconnecter (' . Yii::$app->user->identity->username . ')',
                     'url' => ['site/logout'], 'visible' => !Yii::$app->user->isGuest,
-                    'template' => '<a class="right item" href="{url}">{label}</a>',
+                    'template' => '<a id="logoutB" class="right item">{label}</a>',
                 ],
             ],
         ],
@@ -137,20 +157,6 @@ echo Menu::widget([
      }
     </style>
 
-    <script>
-        $(document).ready(function () {
-            $('.ui.sidebar').sidebar({
-                    context: $('body'),
-                    dimPage: false
-                })
-                .sidebar('attach events', '#sidebar', 'toggle')
-                .sidebar('setting', 'transition', 'slide along')
-            $('.ui.sticky').sticky();
-        });
-        $('#epargne').click(function(){
-            $("#epargnemodal").modal('show');
-        });
-    </script>
 </body>
 
 </html>

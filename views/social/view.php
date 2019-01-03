@@ -13,30 +13,32 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="social-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Html::encode($this->title)?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?=Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+        <?=Html::a('Delete', ['delete', 'id' => $model->id], [
+    'class' => 'btn btn-danger',
+    'data' => [
+        'confirm' => 'Are you sure you want to delete this item?',
+        'method' => 'post',
+    ],
+])?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'user_id',
-            'session_id',
-            'money',
-            'description',
-            'created_at',
-            'auth_key',
-        ],
-    ]) ?>
+    <?=DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        'user_id',
+        'session_id',
+        'money',
+        'description',
+        'created_at',
+        'auth_key',
+    ],
+])?>
 
 </div>
+<?php
+app\assets\AppAsset::register($this);

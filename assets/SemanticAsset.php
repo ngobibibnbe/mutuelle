@@ -13,17 +13,18 @@ use yii\web\AssetBundle;
  * Main application asset bundle.
  *
  * @author CHRV
- * @since 
+ * @since
  */
 class SemanticAsset extends AssetBundle
 {
     public $sourcePath = '@bower/semantic-ui';
-    
+
     public $css = [
         'dist/semantic.min.css',
     ];
     public $js = [
         'dist/semantic.min.js',
+        '/js/js.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

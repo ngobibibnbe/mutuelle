@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,7 +9,10 @@ use yii\widgets\ActiveForm;
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin();?>
+    <?php $form = ActiveForm::begin(
+    [
+        'fieldConfig' => ['options' => ['class' => 'ui toggled']],
+    ]);?>
 
     <?=$form->field($model, 'social_font')->textInput()?>
 
@@ -23,18 +25,22 @@ use yii\widgets\ActiveForm;
     <?=$form->field($model, 'first_name')->textInput(['maxlength' => true])?>
 
     <?=$form->field($model, 'last_name')->textInput(['maxlength' => true])?>
+    <?=$form->field($model, 'imageFile')->fileInput(['multiple' => false, 'accept' => 'image/*'])?>
 
-        <?=Html::tag('div',
-    Html::tag('input', '', ['type' => 'checkbox', "name" => "User[is_admin]", 'value' => '0'])
-    . Html::tag('label', 'admin') . '<br>',
-    ['class' => 'ui toggle red checkbox']
-)?>
-        <?=Html::tag('div',
-    Html::tag('input', '', ['type' => 'checkbox', "name" => "User[is_active]", 'value' => '1', 'checked' => ""])
-    . Html::tag('label', 'actif') . '<br>',
-    ['class' => 'ui toggle checked checkbox']
-)?>
 
+ <?php
+//echo '<input type="checkbox" name="' . CHtml::activeName($model, 'is_admin') . '[]" value="' . $model->is_admin . '" class= "ui toggle checked checkbox" />';
+echo
+$form->field($model, 'is_admin')->checkbox(array(
+    'class' => 'ui slider checkbox',
+));
+?>
+
+       <?php echo
+$form->field($model, 'is_active')->checkbox(array(
+    'class' => 'ui slider checkbox'));
+
+?>
 
 
 

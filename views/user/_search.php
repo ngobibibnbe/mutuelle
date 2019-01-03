@@ -10,23 +10,48 @@ use yii\widgets\ActiveForm;
 
 <div class="user-search">
 
-    <?php $form = ActiveForm::begin([
-    'action' => ['index'],
-    'method' => 'get',
-    'options' => [
-        'data-pjax' => 1,
-    ],
-]);?>
+    <?php $form = ActiveForm::begin(
+    [
+        'action' => ['index'],
+        'method' => 'get',
+        'options' => [
+            'class' => 'ui form',
+            'data-pjax' => 1,
+        ], 'validateOnType' => true,
+        'successCssClass' => 'success',
+        'errorCssClass' => 'error',
+        'errorSummaryCssClass' => 'ui error message',
+        'fieldConfig' => [
+            'template' => '{label}{input}{error}',
+            'errorOptions' => ['class' => 'ui red'],
+            'options' => ['class' => 'field'],
+        ],
 
-    <?=$form->field($model, 'id')?>
+    ]);?>
+    
+    <div class="ui accordion field">
+        <div class="title"><i class="icon dropdown"></i> Ajouter des filtres </div>
+        <div class="content ">
+            <div class="two fields">
+                <?=$form->field($model, 'first_name')?>
+                <?=$form->field($model, 'last_name')?>
+            </div>
+            <div class="four fields">
+            <?=$form->field($model, 'id')?>
+            <?=$form->field($model, 'username')?>
+            <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email'],])?>
+            <?=$form->field($model, 'created_at',['inputOptions' => ['type' => 'date'],])?>
+            </div>
+            <?php // echo $form->field($model, 'tel') ?>
+            <div>
+                <?=Html::resetButton('Réinitialiser', ['class' => 'ui secondary button'])?>
+                <?=Html::submitButton('<i class="search icon"></i>Rechecher', ['class' => 'ui left labeled icon button '])?>
+            </div>
+            
+        </div>
+    </div>
 
-    <?=$form->field($model, 'social_font')?>
 
-    <?=$form->field($model, 'username')?>
-
-    <?=$form->field($model, 'email')?>
-
-    <?=$form->field($model, 'password')?>
 
     <?php // echo $form->field($model, 'first_name') ?>
 
@@ -39,10 +64,7 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'created_at') ?>
     <?php // echo $form->field($model, 'auth_key') ?>
 
-    <div class="form-group">
-        <?=Html::submitButton('Search', ['class' => 'btn btn-primary'])?>
-        <?=Html::resetButton('Reset', ['class' => 'btn btn-default'])?>
-    </div>
+
 
     <?php ActiveForm::end();?>
 

@@ -2,12 +2,13 @@
 
 namespace app\controllers;
 
-use Yii;
+use app\models;
 use app\models\Social;
 use app\models\SocialSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SocialController implements the CRUD actions for Social model.
@@ -63,10 +64,30 @@ class SocialController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {$connection = \Yii::$app->db;
+
         $model = new Social();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $transaction = $connection->beginTransaction();
+            try { $users = models\User::find()->all();
+
+                foreach ($users as $user) {
+                    if ($user->social_font >= $model->money) {
+                        $user->social_font = $user->social_font - $model->money;
+                    } else {
+
+                    }
+
+                    $user->save();
+                }
+
+                $transaction->commit();
+            } catch (Exception $e) {
+                $transaction->rollback();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
