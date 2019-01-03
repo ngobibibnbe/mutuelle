@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
     ]);?>
     
     <div class="ui accordion field">
-        <div class="title active"><i class="icon dropdown"></i> Détails optionnels </div>
+        <div class="title active"><i class="icon dropdown"></i> Ajouter des filtres </div>
         <div class="content ">
             <div class="two fields">
                 <?=$form->field($model, 'first_name')?>
@@ -50,8 +50,8 @@ use yii\widgets\ActiveForm;
 
             <?php // echo $form->field($model, 'tel') ?>
             <div>
-                <?=Html::submitButton('Search', ['class' => 'btn btn-primary'])?>
-                <?=Html::resetButton('Reset', ['class' => 'btn btn-default'])?>
+                <?=Html::resetButton('Réinitialiser', ['class' => 'ui secondary button'])?>
+                <?=Html::submitButton('<i class="search icon"></i>Rechecher', ['class' => 'ui left labeled icon button '])?>
             </div>
             
         </div>
