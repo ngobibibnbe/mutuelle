@@ -33,23 +33,7 @@ $this->title = 'ENSP MUTUAL USER';
             'attribute' => 'image',
             'label' => '',
             'content' => function ($data) {
-<<<<<<< HEAD
-                $class = Html::label(
-                    '<h4 class="ui image header">
-          <img  src="/img/default.jpeg" class="ui mini rounded image">
-          <div class="content">
-            ' . $data->getusername() . '
-
-        </div>
-      </h4
-
-                 '
-                );
-
-                return $class;
-=======
                 return '<img src="'. $data->image.'" class="ui avatar image"></img>';
->>>>>>> 7c21fa7c3b657dadffeb50c737c2c4d660c2dff2
             },
         ],
         'first_name',
