@@ -29,6 +29,8 @@ use Yii;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
 
+    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
@@ -45,11 +47,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['social_font'], 'number'],
             [['username', 'email', 'password', 'first_name', 'last_name'], 'required'],
+            [['image'], 'string'],
             [['is_admin', 'is_active'], 'boolean'],
             [['created_at'], 'safe'],
             [['username', 'email', 'password', 'first_name', 'last_name', 'auth_key', 'image'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            ['email', 'email'],
         ];
     }
 
@@ -237,5 +241,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             return true;
         }
         return false;
+    }
+    public function upload()
+    {
+        if ($this->validate()) {
+            $file = './img/uploads/' . $this->username . '.' . $this->imageFile->extension;
+            $this->image = '/img/uploads/' . $this->username . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($file);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
