@@ -74,8 +74,10 @@ class RemboursementController extends Controller
             try {
                 $emprunt = models\Emprunt::findOne($model->emprunt_id);
                 $pourcentage = $emprunt->percentage;
+                $created_at = $emprunt->created_at;
                 $epargnes = models\Epargne::find()
-                    ->where(["<=", "created_at", $emprunt->created_at]);
+                    ->where("created_at<='" . $created_at . "'");
+                //   ->where("created_at >= \':created_at\'', [':created_at' => $created_at]);
                 $total = $epargnes->sum('money');
                 $epargnes = $epargnes->all();
                 foreach ($epargnes as $epargne) {

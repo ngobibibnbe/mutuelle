@@ -38,11 +38,11 @@ SemanticAsset::register($this);
         <div class="item">
             <div class="header"><a class="item" href="/session/index"><b><i class="plus icon"></i> nouvelle session</b></a></div>
             <div class="menu">
-                <a class="item">Retrait</a>
+                <a class="item"  href="/retrait/index">Retrait</a>
                 <a class="item" href="/epargne/index">Epargne</a>
-                <a class="item">Emprunt</a>
-                <a class="item">Remboursement</a>
-                <a class="item">Font Social</a>
+                <a class="item"  href="/emprunt/index">Emprunt</a>
+                <a class="item"  href="/remboursement/index"> Remboursement</a>
+                <a class="item"  href="/social/index">Font Social</a>
 
             </div>
         </div>

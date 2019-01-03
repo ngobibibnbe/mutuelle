@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     Profile Picture
   </div>
   <div class="image content">
-    <?php echo $this->render('/epargne/_form', ['model' => $epargne]); ?>
+    <?php echo $this->render('/epargne/create', ['model' => $epargne]); ?>
 
   </div>
 </div>

@@ -10,24 +10,24 @@ use yii\widgets\ActiveForm;
 
 <div class="epargne-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin();?>
 
-    <?= $form->field($model, 'session_id')->textInput() ?>
+    <?=$form->field($model, 'session_id')->textInput()?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?=$form->field($model, 'user_id')->textInput()?>
 
-    <?= $form->field($model, 'money')->textInput() ?>
+    <?=$form->field($model, 'money')->textInput()?>
 
-    <?= $form->field($model, 'state')->textInput() ?>
+    <?=$form->field($model, 'state')->textInput()?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?php //echo $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
+    <?=$form->field($model, 'auth_key')->textInput(['maxlength' => true])?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?=Html::submitButton('Save', ['class' => 'btn btn-success'])?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end();?>
 
 </div>
