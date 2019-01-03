@@ -35,7 +35,7 @@ $this->title = 'ENSP MUTUAL USER';
             'content' => function ($data) {
                 $class = Html::label(
                     '<h4 class="ui image header">
-          <img  src="' . $data->getimage() . '" class="ui mini rounded image">
+          <img  src="/img/default.jpeg" class="ui mini rounded image">
           <div class="content">
             ' . $data->getusername() . '
 

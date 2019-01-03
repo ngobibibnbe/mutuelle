@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="emprunt-search">
+<div class="emprunt-search" >
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

@@ -4,54 +4,54 @@ use yii\helpers\VarDumper;
 $this->title = Yii::$app->user->identity->username;
 ?>
     <p>
-        <b>Bienvenu Mr/Mme <?=Yii::$app->user->identity->first_name;?></b>
-    </p>
-    <p class="danger">
-        <b>(en cas de dette ) Vous avez une dette de :prix </b>
-    </p>
-    <p class="danger">
-        <b>(en cas de dette ) que vous devez rendre avant le :date </b>
+        <b class= "accueil">Bienvenu <?=Yii::$app->user->identity->first_name;?></b>
     </p>
     <br><br><br><br><br><br>
-    <table class="cadress">
-        <tr class="cadres">
-            <td>
-                <div>
-                    <p class=cadre>30 Fcfa</p>
-                    <hr>
-                    <p><b>Dette</b></p>
-
-
-                </div>
-            </td>
-            <td>
-                <div>
-                    <p class=cadre>30 Fcfa</p>
-                    <hr>
-                    <p><b>Gains</b></p>
-
-                </div>
-            </td>
-            <td>
-                <div>
-                    <p class=cadre>30 Fcfa</p>
-                    <hr>
-                    <p><b>Epargne</b></p>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <p class=cadre>30 Fcfa</p>
-                    <hr>
-                    <p><b>Font Social</b></p>
-                </div>
-            </td>
-        </tr>
-    </table><br><br><br><br><br><br>
+    <div class="ui center aligned grid">
+    <div class="ui statistics">
+  
+  <div class="blue statistic">
+    <div class="value">
+      <p class=cadre>$ 30 cfa</p>
+        <hr>
+      <p><b class= "dette">Dette</b></p>
+    </div>
+   
+  </div>
+  <div class="red statistic">
+    <div class="value">
+        <p class=cadre>$ 30 cfa</p>
+            <hr>
+        <p><b class= "dette">Gains</b></p>
+    </div>
+    
+  </div>
+  <div class="purple statistic">
+    <div class="value">
+        <p class=cadre>$ 30 cfa</p>
+            <hr>
+        <p><b class= "dette">Epargne</b></p>
+    </div>
+    
+  </div>
+  <div class="pink statistic">
+    <div class="value">
+        <p class=cadre>$ 30 cfa</p>
+            <hr>
+        <p><b class= "dette" >Font Social</b></p>
+    </div>
+    
+  </div>
+  
+  </div>
+</div>
+</div> <br><br><br><br><br><br> 
+   
     <style>
         .presentation {}
         .presentation p {
-            font-size: 50px;
+            font-size: 40px;
+            font-family :"Berlin dans FB Demi";
         }
     </style>
     <div class="presentation">
@@ -103,11 +103,20 @@ $this->title = Yii::$app->user->identity->username;
         </table>
     </div>
     <style>
+    .dette{
+        font-family :"Berlin dans FB Demi", Times, serif;
+    }
     p {
             text-align: center;
             margin: auto;
             font-size: 20px;
         }
+        .accueil {
+                    font-family :"Berlin dans FB Demi", Times, serif;
+                    font-size: 40px;
+                    text-decoration : "blink";
+                    font-style : "italic";
+                }
         .danger {
             color: brown;
         }
