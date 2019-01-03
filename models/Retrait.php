@@ -50,11 +50,11 @@ class Retrait extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'session_id' => 'Session ID',
-            'user_id' => 'User ID',
-            'money' => 'Money',
-            'state' => 'State',
-            'created_at' => 'Created At',
+            'session_id' => 'ID de la Session',
+            'user_id' => "Id de l'utilisateur",
+            'money' => 'Montant',
+            'state' => 'Etat',
+            'created_at' => 'Fait le ',
             'auth_key' => 'Auth Key',
         ];
     }

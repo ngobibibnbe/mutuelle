@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
+/* @var $model app\models\Session */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Sessions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="user-view">
+<div class="session-view">
 
     <h1><?=Html::encode($this->title)?></h1>
 
@@ -30,17 +30,23 @@ $this->params['breadcrumbs'][] = $this->title;
     'model' => $model,
     'attributes' => [
         'id',
-        'social_font',
-        'username',
-        'email:email',
-        'password',
-        'first_name',
-        'last_name',
-        'is_admin',
-        'is_active',
-        'created_at',
-        'auth_key',
+        'date',
+        'state',
     ],
 ])?>
+
+<button id="epargne"   > Epargne </button>
+
+
+<div class="ui modal" id="epargnemodal">
+  <i class="close icon"></i>
+  <div class="header">
+    Profile Picture
+  </div>
+  <div class="image content">
+    <?php echo $this->render('/epargne/_form', ['model' => $epargne]); ?>
+
+  </div>
+</div>
 
 </div>

@@ -25,6 +25,11 @@ class Session extends \yii\db\ActiveRecord
     {
         return 'session';
     }
+    public function getstate()
+    {
+        return $this->state;
+
+    }
 
     /**
      * {@inheritdoc}
@@ -45,7 +50,7 @@ class Session extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'date' => 'Date',
-            'state' => 'State',
+            'state' => 'Etat',
         ];
     }
 

@@ -16,6 +16,7 @@ class m181231_112426_remboursement extends Migration
             'id' => $this->primaryKey(),
             "session_id" => $this->integer(),
             "emprunt_id" => $this->integer()->notNull(),
+            "amount" => $this->Float()->notNull(),
             "tranche" => $this->integer()->defaultValue(0),
             "created_at" => $this->dateTime()->defaultValue(new Expression('now()')), // date d'ajout dans la base de donnée
             "auth_key" => $this->string(),

@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 $this->title = 'ENSP MUTUAL USER';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index" style="margin-left:200px;">
+<div class="user-index" style="width:50%;margin:auto;">
 
     <h1><?=Html::encode($this->title)?></h1>
     <br><br>
@@ -48,7 +48,7 @@ $this->title = 'ENSP MUTUAL USER';
             'label' => 'actif ?',
             'filter' => array("1" => "Active", "0" => "Inactive"),
             'content' => function ($data) {
-                $class = $data->getis_active() == 0 ? Html::label(
+                $class = $data->getis_active() == 1 ? Html::label(
                     '<a class="ui black circular label"></a>') : Html::label(
                     '<a class="ui grey circular label"></a>');
 
@@ -58,7 +58,6 @@ $this->title = 'ENSP MUTUAL USER';
         ],
         'social_font',
         //'created_at',
-        //'validate_at',
         //'auth_key',
 
         ['class' => 'yii\grid\ActionColumn',
@@ -91,3 +90,4 @@ $this->title = 'ENSP MUTUAL USER';
 </div>
     <?php Pjax::end();?>
 </div>
+

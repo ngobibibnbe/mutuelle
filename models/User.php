@@ -17,7 +17,6 @@ use Yii;
  * @property int $is_admin
  * @property int $is_active
  * @property string $created_at
- * @property string $validate_at
  * @property string $auth_key
  *
  * @property Emprunt[] $emprunts
@@ -46,7 +45,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['social_font'], 'number'],
             [['username', 'email', 'password', 'first_name', 'last_name'], 'required'],
             [['is_admin', 'is_active'], 'boolean'],
-            [['created_at', 'validate_at'], 'safe'],
+            [['created_at'], 'safe'],
             [['username', 'email', 'password', 'first_name', 'last_name', 'auth_key'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -61,15 +60,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             'id' => 'ID',
             'social_font' => 'Social Font',
-            'username' => 'Username',
+            'username' => "Nom d'Utilisateur",
             'email' => 'Email',
-            'password' => 'Password',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'is_admin' => 'Is Admin',
-            'is_active' => 'Is Active',
-            'created_at' => 'Created At',
-            'validate_at' => 'Validate At',
+            'password' => 'Mot de Paasse',
+            'first_name' => 'Prénom',
+            'last_name' => 'Nom',
+            'is_admin' => 'Admin',
+            'is_active' => ' Actif',
+            'created_at' => "Date d'ajout",
             'auth_key' => 'Auth Key',
         ];
     }
@@ -197,6 +195,28 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return \Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'attributes' => [
+                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+                ],
+                'value' => function () {return date('Y-m-j G:i:s');}, // unix timestamp
+            ],
+            [
+                'class' => \yii\behaviors\AttributeBehavior::className(),
+                'attributes' => [
+                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => 'password',
+                    \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => 'password',
+                ],
+                'value' => function ($event) {
+                    return \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+                },
+            ],
+        ];
+    }
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

@@ -14,16 +14,15 @@ class m181224_032452_create_user_model extends Migration
     {
         $this->createTable("user", [
             "id" => $this->primaryKey(),
-            "social_font" => $this->float()->defaultValue(150000),
+            "social_font" => $this->float()->notNull()->defaultValue(150000),
             "username" => $this->string()->notNull()->unique(),
             "email" => $this->string()->notNull()->unique(),
             "password" => $this->string()->notNull(),
             "first_name" => $this->string()->notNull(), // Prénoms
             "last_name" => $this->string()->notNull(), // Noms
             "is_admin" => $this->boolean()->notNull()->defaultValue(false), // utilisateur est admin?
-            "is_active" => $this->boolean()->notNull()->defaultValue(false), // utilisateur est actif?
+            "is_active" => $this->boolean()->notNull()->defaultValue(true), // utilisateur est actif?
             "created_at" => $this->timestamp(), // date d'ajout dans la base de donnée
-            "validate_at" => $this->dateTime(), // temporaire
             "auth_key" => $this->string(),
         ]);
 
@@ -34,6 +33,7 @@ class m181224_032452_create_user_model extends Migration
             'first_name' => 'chrv',
             'last_name' => 'chrv',
             'is_admin' => true,
+
         ]);
 
     }

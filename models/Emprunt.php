@@ -10,11 +10,10 @@ use Yii;
  * @property int $id
  * @property int $session_id
  * @property int $user_id
- * @property int $money
+ * @property int $amount
  * @property double $percentage
  * @property int $delay
  * @property int $state
- * @property int $finish
  * @property string $created_at
  * @property string $auth_key
  *
@@ -38,7 +37,7 @@ class Emprunt extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['session_id', 'user_id', 'money', 'delay', 'state', 'finish'], 'integer'],
+            [['session_id', 'user_id', 'amount', 'delay', 'state'], 'integer'],
             [['user_id'], 'required'],
             [['percentage'], 'number'],
             [['created_at'], 'safe'],
@@ -55,14 +54,13 @@ class Emprunt extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'session_id' => 'Session ID',
-            'user_id' => 'User ID',
-            'money' => 'Money',
-            'percentage' => 'Percentage',
-            'delay' => 'Delay',
-            'state' => 'State',
-            'finish' => 'Finish',
-            'created_at' => 'Created At',
+            'session_id' => 'id de la Session',
+            'user_id' => "id de l'utilisateur",
+            'amount' => 'montant',
+            'percentage' => 'Pourcentage',
+            'delay' => 'Delais',
+            'state' => 'Etat',
+            'created_at' => 'fait le',
             'auth_key' => 'Auth Key',
         ];
     }

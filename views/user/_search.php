@@ -11,22 +11,22 @@ use yii\widgets\ActiveForm;
 <div class="user-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
-    ]); ?>
+    'action' => ['index'],
+    'method' => 'get',
+    'options' => [
+        'data-pjax' => 1,
+    ],
+]);?>
 
-    <?= $form->field($model, 'id') ?>
+    <?=$form->field($model, 'id')?>
 
-    <?= $form->field($model, 'social_font') ?>
+    <?=$form->field($model, 'social_font')?>
 
-    <?= $form->field($model, 'username') ?>
+    <?=$form->field($model, 'username')?>
 
-    <?= $form->field($model, 'email') ?>
+    <?=$form->field($model, 'email')?>
 
-    <?= $form->field($model, 'password') ?>
+    <?=$form->field($model, 'password')?>
 
     <?php // echo $form->field($model, 'first_name') ?>
 
@@ -37,16 +37,13 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'is_active') ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'validate_at') ?>
-
     <?php // echo $form->field($model, 'auth_key') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?=Html::submitButton('Search', ['class' => 'btn btn-primary'])?>
+        <?=Html::resetButton('Reset', ['class' => 'btn btn-default'])?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php ActiveForm::end();?>
 
 </div>

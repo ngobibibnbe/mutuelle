@@ -2,14 +2,14 @@
 
 namespace app\models;
 
-use app\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\models\Remboursement;
 
 /**
- * UserSearch represents the model behind the search form of `app\models\User`.
+ * RemboursementSearch represents the model behind the search form of `app\models\Remboursement`.
  */
-class UserSearch extends User
+class RemboursementSearch extends Remboursement
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'is_admin', 'is_active'], 'integer'],
-            [['social_font'], 'number'],
-            [['username', 'email', 'password', 'first_name', 'last_name', 'created_at', 'auth_key'], 'safe'],
+            [['id', 'session_id', 'emprunt_id', 'tranche'], 'integer'],
+            [['amount'], 'number'],
+            [['created_at', 'auth_key'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = Remboursement::find();
 
         // add conditions that should always apply here
 
@@ -60,18 +60,14 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'social_font' => $this->social_font,
-            'is_admin' => $this->is_admin,
-            'is_active' => $this->is_active,
+            'session_id' => $this->session_id,
+            'emprunt_id' => $this->emprunt_id,
+            'amount' => $this->amount,
+            'tranche' => $this->tranche,
             'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key]);
+        $query->andFilterWhere(['like', 'auth_key', $this->auth_key]);
 
         return $dataProvider;
     }

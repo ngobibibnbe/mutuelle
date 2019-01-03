@@ -1,6 +1,5 @@
 <?php
 
-use yii\db\Expression;
 use yii\db\Migration;
 
 /**
@@ -15,8 +14,8 @@ class m181227_150850_create_session_table extends Migration
     {
         $this->createTable('session', [
             'id' => $this->primaryKey(),
-            'date' => $this->timestamp()->defaultValue(new Expression('now()')),
-            'state' => $this->tinyInteger()->defaultValue(0), //0 waiting,1 undo,2 done;
+            'date' => $this->date()->unique(),
+            'state' => $this->tinyInteger()->defaultValue(0), //0 waiting,1 done,2 done;
 
         ]);
     }

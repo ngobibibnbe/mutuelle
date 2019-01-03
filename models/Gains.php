@@ -50,10 +50,10 @@ class Gains extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'remboursement_id' => 'Remboursement ID',
-            'getter_id' => 'Getter ID',
+            'remboursement_id' => 'id du remboursement',
+            'getter_id' => 'id du gagnant',
             'gain' => 'Gain',
-            'created_at' => 'Created At',
+            'created_at' => 'Fait le ',
             'auth_key' => 'Auth Key',
         ];
     }

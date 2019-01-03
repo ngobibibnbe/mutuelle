@@ -36,10 +36,10 @@ SemanticAsset::register($this);
         </div>
 
         <div class="item">
-            <div class="header"><a class="item"><b><i class="plus icon"></i> nouvelle session</b></a></div>
+            <div class="header"><a class="item" href="/session/index"><b><i class="plus icon"></i> nouvelle session</b></a></div>
             <div class="menu">
                 <a class="item">Retrait</a>
-                <a class="item">Epargne</a>
+                <a class="item" href="/epargne/index">Epargne</a>
                 <a class="item">Emprunt</a>
                 <a class="item">Remboursement</a>
                 <a class="item">Font Social</a>
@@ -146,7 +146,10 @@ echo Menu::widget([
                 .sidebar('attach events', '#sidebar', 'toggle')
                 .sidebar('setting', 'transition', 'slide along')
             $('.ui.sticky').sticky();
-        })
+        });
+        $('#epargne').click(function(){
+            $("#epargnemodal").modal('show');
+        });
     </script>
 </body>
 

@@ -10,14 +10,10 @@ use Yii;
  * @property int $id
  * @property int $session_id
  * @property int $emprunt_id
+ * @property double $amount
  * @property int $tranche
- * @property int $state
  * @property string $created_at
  * @property string $auth_key
- *
- * @property Gains[] $gains
- * @property Emprunt $emprunt
- * @property Session $session
  */
 class Remboursement extends \yii\db\ActiveRecord
 {
@@ -35,12 +31,11 @@ class Remboursement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['session_id', 'emprunt_id', 'tranche', 'state'], 'integer'],
-            [['emprunt_id'], 'required'],
+            [['session_id', 'emprunt_id', 'tranche'], 'integer'],
+            [['emprunt_id', 'amount'], 'required'],
+            [['amount'], 'number'],
             [['created_at'], 'safe'],
             [['auth_key'], 'string', 'max' => 255],
-            [['emprunt_id'], 'exist', 'skipOnError' => true, 'targetClass' => Emprunt::className(), 'targetAttribute' => ['emprunt_id' => 'id']],
-            [['session_id'], 'exist', 'skipOnError' => true, 'targetClass' => Session::className(), 'targetAttribute' => ['session_id' => 'id']],
         ];
     }
 
@@ -53,35 +48,11 @@ class Remboursement extends \yii\db\ActiveRecord
             'id' => 'ID',
             'session_id' => 'Session ID',
             'emprunt_id' => 'Emprunt ID',
+            'amount' => 'Amount',
             'tranche' => 'Tranche',
-            'state' => 'State',
             'created_at' => 'Created At',
             'auth_key' => 'Auth Key',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGains()
-    {
-        return $this->hasMany(Gains::className(), ['remboursement_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEmprunt()
-    {
-        return $this->hasOne(Emprunt::className(), ['id' => 'emprunt_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSession()
-    {
-        return $this->hasOne(Session::className(), ['id' => 'session_id']);
     }
 
     /**
