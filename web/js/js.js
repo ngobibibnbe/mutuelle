@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $('.ui.sidebar').sidebar({
-            context: $('body'),
-            dimPage: false
-        })
+        context: $('body'),
+        dimPage: false
+    })
         .sidebar('attach events', '#sidebar', 'toggle')
         .sidebar('setting', 'transition', 'slide along')
     $('.ui.sticky').sticky();
@@ -13,4 +13,26 @@ $(document).ready(function () {
     $('#epargne').click(function () {
         $("#epargnemodal").modal('show');
     });
+
+    $('#retrait').click(function () {
+        $("#retraitmodal").modal('show');
+    });
+
+    $('#emprunt').click(function () {
+        $("#empruntmodal").modal('show');
+    });
+    $('#remboursement').click(function () {
+        $("#remboursementemodal").modal('show');
+    });
+    $('#social').click(function () {
+        $("#socialmodal").modal('show');
+    });
+
+    $('imageclickable').click(function () {
+        $("ui.modal").modal('show');
+    });
+
+
+
+
 })

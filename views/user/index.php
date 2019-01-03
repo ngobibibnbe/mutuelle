@@ -34,15 +34,15 @@ $this->title = 'ENSP MUTUAL USER';
             //'filter' => '',
             'content' => function ($data) {
                 $class = Html::label(
-                    '<h4 class="ui image header">
-          <img  src="' . $data->getimage() . '" class="ui mini rounded image">
+                    '<h4 class="ui image header "><a class="imageclickable">
+          <img  src="' . $data->getimage() . '" class="ui mini rounded image ">
           <div class="content">
             ' . $data->getusername() . '
 
-        </div>
-      </h4
-
-                 '
+        </div></a>
+      </h4><img src="' . $data->getimage() . '"
+       data-title="' . $data->getusername() . 'Matricule ' . $data->getusername() . '" data-content="' . $data->getusername() . 'est un membre de la mutuelle depuis
+        ' . $data->getcreated_at() . '" class="ui avatar image">'
                 );
 
                 return $class;
@@ -50,14 +50,14 @@ $this->title = 'ENSP MUTUAL USER';
             //TblCategory::get_status(),
         ],
 
-        [
-            'attribute' => 'id',
-            'label' => 'matricule',
-            'format' => 'text', //raw, html
-            'content' => function ($data) {
-                return $data->getid();
-            },
-        ],
+        /* [
+        'attribute' => 'id',
+        'label' => 'matricule',
+        'format' => 'text', //raw, html
+        'content' => function ($data) {
+        return $data->getid();
+        },
+        ],*/
 
         'email:email',
         //'password',

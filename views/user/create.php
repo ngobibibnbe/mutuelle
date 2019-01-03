@@ -19,4 +19,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <?php
-\app\assets\AppAsset::register($this);
+app\assets\AppAsset::register($this);

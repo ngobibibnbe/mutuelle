@@ -185,6 +185,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->auth_key;
     }
+    public function getcreated_at()
+    {
+        return $this->created_at;
+    }
 
     /**
      * {@inheritdoc}
