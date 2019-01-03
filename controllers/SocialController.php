@@ -67,6 +67,7 @@ class SocialController extends Controller
     {$connection = \Yii::$app->db;
 
         $model = new Social();
+        $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 

@@ -19,7 +19,6 @@ class LoginForm extends Model
 
     private $_user = false;
 
-
     /**
      * @return array the validation rules.
      */
@@ -27,13 +26,13 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            ['username', 'required','message'=>"Nom d'utilisateur requis"],
+            ['username', 'required', 'message' => "Nom d'utilisateur requis"],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
 
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            ['password','required','message'=>"Mot de passe requis"]
+            ['password', 'required', 'message' => "Mot de passe requis"],
         ];
     }
 
@@ -62,7 +61,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         return false;
     }

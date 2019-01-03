@@ -26,6 +26,7 @@ use yii\widgets\ActiveForm;
 ]);?>
 
 <h5> <?php echo "Session N°" . $model->session_id; ?></h5>
+<?php echo $form->field($model, 'session_id', ['options' => ['style' => 'display:none;']])->textInput() ?>
     <?=$form->field($model, 'user_id')->textInput()?>
 
     <?=$form->field($model, 'money')->textInput()?>

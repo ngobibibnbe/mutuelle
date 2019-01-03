@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         'template' => '{label}{input}{error}',
         'errorOptions' => ['class' => 'ui red'],
         //'labelOptions' => ['class' => 'ui label'],
-        'options' => ['class' => 'field fluid'],
+        'options' => ['class' => 'field  '],
     ],
 ]);?>
 

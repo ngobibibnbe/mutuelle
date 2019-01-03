@@ -62,7 +62,6 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
   <div class=" content">
     <?php echo $this->render('/social/create', ['model' => $social]); ?>
-
   </div>
 </div>
 
@@ -102,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
-<div class="ui mini modal" id="remboursementemodal">
+<div class="ui modal" id="remboursementemodal">
   <i class="close icon"></i>
   <div class="header">
     Remboursement
@@ -115,4 +114,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 <?php
-app\assets\AppAsset::register($this);
+// app\assets\AppAsset::register($this);

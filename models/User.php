@@ -68,7 +68,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'social_font' => 'Social Font',
             'username' => "Nom d'Utilisateur",
             'email' => 'Email',
-            'password' => 'Mot de Paasse',
+            'password' => 'Mot de Passe',
             'first_name' => 'Prénom',
             'last_name' => 'Nom',
             'is_admin' => 'Admin',

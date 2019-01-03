@@ -21,13 +21,15 @@ use yii\widgets\ActiveForm;
         'fieldConfig' => [
             'template' => '{label}{input}{error}',
             'errorOptions' => ['class' => 'ui red'],
-            //'labelOptions' => ['class' => 'ui label'],
-            'options' => ['class' => 'field '],
+            'options' => ['class' => 'field'],
+            'inputOptions' => ['class' => false],
         ],
     ]
 );?>
 
 <h5> <?php echo "Session N°" . $model->session_id; ?></h5>
+<?php echo $form->field($model, 'session_id', ['options' => ['style' => 'display:none;']])->textInput() ?>
+
     <?=$form->field($model, 'user_id')->textInput()?>
 
     <?=$form->field($model, 'amount')->textInput()?>

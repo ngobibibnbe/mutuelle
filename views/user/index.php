@@ -91,12 +91,12 @@ $this->title = 'ENSP MUTUAL USER';
                         '<span class="glyphicon glyphicon-user"> <i class="icon edit"></i> </span>',
                         $url);
                 },
-                'delete' => function ($url, $model) {
-                    return Html::a(
-                        '<span class="glyphicon glyphicon-user"> <i class="icon user times"></i> </span>',
-                        $url);
-                },
-                /*'link' => function ($url, $model, $key) {
+                /*  'delete' => function ($url, $model) {
+            return Html::a(
+            '<span class="glyphicon glyphicon-user"> <i class="icon user times"></i> </span>',
+            $url);
+            },
+            /*'link' => function ($url, $model, $key) {
             return Html::a('Action', $url);
             },*/
             ],
