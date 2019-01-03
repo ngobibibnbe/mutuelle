@@ -29,6 +29,28 @@ $this->title = 'ENSP MUTUAL USER';
         // ['class' => 'yii\grid\SerialColumn'],
 
         [
+            'attribute' => 'image',
+            'label' => ' profile',
+            //'filter' => '',
+            'content' => function ($data) {
+                $class = Html::label(
+                    '<h4 class="ui image header">
+          <img  src="' . $data->getimage() . '" class="ui mini rounded image">
+          <div class="content">
+            ' . $data->getusername() . '
+
+        </div>
+      </h4
+
+                 '
+                );
+
+                return $class;
+            },
+            //TblCategory::get_status(),
+        ],
+
+        [
             'attribute' => 'id',
             'label' => 'matricule',
             'format' => 'text', //raw, html
@@ -37,7 +59,6 @@ $this->title = 'ENSP MUTUAL USER';
             },
         ],
 
-        'username',
         'email:email',
         //'password',
         //'first_name',

@@ -1,5 +1,5 @@
 <?php
-
+use yii\db\Expression;
 use yii\db\Migration;
 
 /**
@@ -21,8 +21,9 @@ class m181224_032452_create_user_model extends Migration
             "first_name" => $this->string()->notNull(), // Prénoms
             "last_name" => $this->string()->notNull(), // Noms
             "is_admin" => $this->boolean()->notNull()->defaultValue(false), // utilisateur est admin?
+            "image" => $this->String()->defaultValue("/img/default.jpeg"),
             "is_active" => $this->boolean()->notNull()->defaultValue(true), // utilisateur est actif?
-            "created_at" => $this->timestamp(), // date d'ajout dans la base de donnée
+            "created_at" => $this->dateTime()->defaultValue(new Expression('now()')), // date d'ajout dans la base de donnée
             "auth_key" => $this->string(),
         ]);
 
