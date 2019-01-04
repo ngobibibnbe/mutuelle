@@ -35,7 +35,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post', 'get'],
+                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -56,6 +56,11 @@ class SiteController extends Controller
             ],
         ];
     }
+
+
+
+
+
 
     /**
      * Displays homepage.
@@ -233,4 +238,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionBilan()
+    {
+        return $this->render('Bilan');
+    }
 }
+

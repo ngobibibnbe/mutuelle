@@ -24,32 +24,19 @@ class RbacController extends Controller{
         $auth->add($updateMember);
 
         // Activer/Désaciver un membre
-        $toggleActiveMember = $auth->createPermission('toggleActiveMember');
-        $toggleActiveMember = $auth->description('Activer/Désactiver un membre ');
-        $auth->add($toggleActiveMember);
-
-
-        // Faire un épargne
-        $doASaving = $auth->createPermission('doASaving');
-        $doASaving->description = 'faire une épargne';
-        $auth->add($doASaving);
-
-        // Faire un emprunt
-        $doAborrowing = $auth->createPermission('doABorrowing');
-        $doABorrowing->description('faire un emprunt');
-        $auth->add($doABorrowing);
-
-        // Faire un retrait
-        $doAWithDrawal = $auth->createPermission('doABorrowing');
-        $doAWithDrawal->description('Faire un retrait');
-        $auth->add($doAWithDrawal);
+        $activeMember = $auth->createPermission('ActiveMember');
+        $activeMember->description ='Activer/Désactiver un membre';
+        $auth->add($activeMember);
 
         // Définition des rôles
         $admin = $auth->createRole('admin');
         $member = $auth->createRole('member');
-        $candidate = $auth->createRole('candidate');
 
-
-
+        $auth->add($member);
+        $auth->add($admin);
+        $auth->addChild($admin,$createMember);
+        $auth->addChild($admin,$updateMember);
+        $auth->addChild($admin,$activeMember);
+        $auth->addChild($admin,$member);
     }
 }

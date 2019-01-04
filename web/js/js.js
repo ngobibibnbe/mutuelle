@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('.ui.sidebar').sidebar({
         context: $('body'),
-        dimPage: false
     })
         .sidebar('attach events', '#sidebar', 'toggle')
         .sidebar('setting', 'transition', 'slide along')
