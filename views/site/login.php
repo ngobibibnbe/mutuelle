@@ -5,8 +5,8 @@
 /* @var $model app\models\LoginForm */
 
 use app\assets\SemanticAsset;
+use app\widgets\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 SemanticAsset::register($this);
 
@@ -33,20 +33,10 @@ $this->title = 'Login';
 
 
 
-        <?php $form = ActiveForm::begin([
-    'validateOnType' => true,
-    'options' => ['class' => 'ui form raised segment', 'id' => 'login-form'],
-    'successCssClass' => 'success',
-    'errorCssClass' => 'error',
-    'errorSummaryCssClass' => 'ui error message',
-    'validatingCssClass' => 'loading',
-    'fieldConfig' => [
-        'template' => '{label}{input}{error}',
-        'errorOptions' => ['class' => 'ui red'],
-        //'labelOptions' => ['class' => 'ui label'],
-        'options' => ['class' => 'field fluid'],
-    ],
-]);?>
+        <?php $form = ActiveForm::begin(
+    [
+        'options' => ['class' => 'ui form raised segment', 'id' => 'login-form'],
+    ]);?>
         <?=Html::tag('h1', Html::encode($this->title), [
     'class' => 'ui dividing header center aligned',
     'style' => 'margin-bottom:100px',
