@@ -28,49 +28,27 @@ use yii\widgets\ActiveForm;
         ],
 
     ]);?>
-
+    
     <div class="ui accordion field">
-
-        <select class="ui dropdown">
-        <option value="">Ajouter des filtres</option>
-  <option value="0">nom</option>
-  <option value="1">Prenom</option>
-  <option value="2">id</option>
-  <option value="3">Nom d utilisateur</option>
-    <option value="4">email</option>
-    <option value="5">date</option>
-
-</select>
-
+        <div class="title"><i class="icon dropdown"></i> Ajouter des filtres </div>
         <div class="content ">
             <div class="two fields">
-            <button  id="b">jjj</button>
-                <?=$form->field($model, 'first_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '0']]);?>
-                <?=$form->field($model, 'last_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '1']]);?>
+                <?=$form->field($model, 'first_name')?>
+                <?=$form->field($model, 'last_name')?>
             </div>
             <div class="four fields">
-            <?=$form->field($model, 'id', ['inputOptions' => ['style' => 'display:none;', 'id' => '2']]);?>
-            <?=$form->field($model, 'username', ['inputOptions' => ['style' => 'display:none;', 'id' => '3']]);?>
-            <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email', 'style' => 'display:none;', 'id' => '4']]);?>
-            <?=$form->field($model, 'created_at', ['inputOptions' => ['type' => 'date', 'style' => 'display:none;', 'id' => '5']]);?>
+            <?=$form->field($model, 'id')?>
+            <?=$form->field($model, 'username')?>
+            <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email'],])?>
+            <?=$form->field($model, 'created_at',['inputOptions' => ['type' => 'date'],])?>
             </div>
             <?php // echo $form->field($model, 'tel') ?>
             <div>
                 <?=Html::resetButton('Réinitialiser', ['class' => 'ui secondary button'])?>
                 <?=Html::submitButton('<i class="search icon"></i>Rechecher', ['class' => 'ui left labeled icon button '])?>
             </div>
-
+            
         </div>
-        <script>
-        e= $("#b");
-       e.click(function(){alert("The paragraph was clicked.");
-
-          // if(e.val=="0"){
-               $('#0').css({"display":"block"});
-          // }
-
-        })
-        </script>
     </div>
 
 
