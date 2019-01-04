@@ -30,30 +30,17 @@ use yii\widgets\ActiveForm;
     ]);?>
 
     <div class="ui accordion field">
-
-        <select class="ui dropdown">
-        <option value="">Ajouter des filtres</option>
-  <option value="0">nom</option>
-  <option value="1">Prenom</option>
-  <option value="2">id</option>
-  <option value="3">Nom d utilisateur</option>
-    <option value="4">email</option>
-    <option value="5">date</option>
-
-</select>
-
+        <div class="title"><i class="icon dropdown"></i> Ajouter des filtres </div>
         <div class="content ">
             <div class="two fields">
-            <button  id="b">jjj</button>
-            <?=$form->field($model, 'authkey', ['inputOptions' => ['id' => '']]);?>
-                <?=$form->field($model, 'first_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '0']]);?>
-                <?=$form->field($model, 'last_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '1']]);?>
+                <?=$form->field($model, 'first_name')?>
+                <?=$form->field($model, 'last_name')?>
             </div>
             <div class="four fields">
-            <?=$form->field($model, 'id', ['inputOptions' => ['style' => 'display:none;', 'id' => '2']]);?>
-            <?=$form->field($model, 'username', ['inputOptions' => ['style' => 'display:none;', 'id' => '3']]);?>
-            <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email', 'style' => 'display:none;', 'id' => '4']]);?>
-            <?=$form->field($model, 'created_at', ['inputOptions' => ['type' => 'date', 'style' => 'display:none;', 'id' => '5']]);?>
+            <?=$form->field($model, 'id')?>
+            <?=$form->field($model, 'username')?>
+            <?=$form->field($model, 'email', ['inputOptions' => ['type' => 'email']])?>
+            <?=$form->field($model, 'created_at', ['inputOptions' => ['type' => 'date']])?>
             </div>
             <?php // echo $form->field($model, 'tel') ?>
             <div>
@@ -62,23 +49,6 @@ use yii\widgets\ActiveForm;
             </div>
 
         </div>
-        <script>
-
-e2=$(".ui.dropdown");
-e2.select(function(){
-a=e2.val();
-
-          // if(e.val=="0"){
-               $('#0').css({"visibility":"block"});
-               if(a==2){alert("The paragraph was clicked"+e2 . val()+"gfgh");
-            <?php $model->id = $model->auth_key;
-$model->auth_key = "";?>
-            }
-        });
-          // }
-
-
-        </script>
     </div>
 
 
