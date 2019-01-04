@@ -55,6 +55,11 @@ class SiteController extends Controller
         ];
     }
 
+
+
+
+
+
     /**
      * Displays homepage.
      *
@@ -189,4 +194,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionBilan()
+    {
+        return $this->render('Bilan');
+    }
 }
+
