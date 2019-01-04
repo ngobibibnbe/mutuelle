@@ -52,7 +52,35 @@ class RemboursementController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
+    {$connection = \Yii::$app->db;
+
+        $model = $this->findModel($id);
+
+        $transaction = $connection->beginTransaction();
+        try {
+            $emprunt = models\Emprunt::findOne($model->emprunt_id);
+            $emprunt->amount = $emprunt->amount - $model->amount;
+            $emprunt->save();
+            $pourcentage = $emprunt->percentage;
+            $created_at = $emprunt->created_at;
+            $epargnes = models\Epargne::find()
+                ->where("created_at<='" . $created_at . "'");
+            //   ->where("created_at >= \':cr eated_at\'', [':created_at' => $created_at]);
+            $total = $epargnes->sum('money');
+            $epargnes = $epargnes->all();
+            foreach ($epargnes as $epargne) {
+                $gain = new models\Gains();
+                $gain->loadDefaultValues();
+                $gain->remboursement_id = $model->id;
+                $gain->getter_id = $epargne->user_id;
+                $gain->gain = ($epargne->money * $model->amount) * $emprunt->percentage / (100 * $total);
+                $gain->save();
+            }
+            $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollback();
+        }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -65,40 +93,13 @@ class RemboursementController extends Controller
      */
     public function actionCreate()
     {$connection = \Yii::$app->db;
-
         $model = new Remboursement();
-$model->loadDefaultValues();
-
+        $model->loadDefaultValues();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
             $transaction = $connection->beginTransaction();
-            try {
-                $emprunt = models\Emprunt::findOne($model->emprunt_id);
-                $pourcentage = $emprunt->percentage;
-                $created_at = $emprunt->created_at;
-                $epargnes = models\Epargne::find()
-                    ->where("created_at<='" . $created_at . "'");
-                //   ->where("created_at >= \':created_at\'', [':created_at' => $created_at]);
-                $total = $epargnes->sum('money');
-                $epargnes = $epargnes->all();
-                foreach ($epargnes as $epargne) {
-                    $gain = new models\Gains();
-                    $gain->loadDefaultValues();
-                    $gain->remboursement_id = $model->id;
-                    $gain->getter_id = $epargne->user_id;
-                    $gain->gain = ($epargne->money * $model->amount) * $emprunt->percentage / (100 * $total);
-
-                    $gain->save();
-                }
-
-                $transaction->commit();
-            } catch (Exception $e) {
-                $transaction->rollback();
-            }
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);

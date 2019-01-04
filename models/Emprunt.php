@@ -14,6 +14,7 @@ use Yii;
  * @property double $percentage
  * @property int $delay
  * @property int $state
+ * @property int $states
  * @property string $created_at
  * @property string $auth_key
  *
@@ -37,9 +38,9 @@ class Emprunt extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['session_id', 'user_id', 'amount', 'delay', 'state'], 'integer'],
+            [['session_id', 'user_id', 'delay', 'state', 'states'], 'integer'],
             [['user_id'], 'required'],
-            [['percentage'], 'number'],
+            [['percentage', 'amount'], 'number'],
             [['created_at'], 'safe'],
             [['auth_key'], 'string', 'max' => 255],
             [['session_id'], 'exist', 'skipOnError' => true, 'targetClass' => Session::className(), 'targetAttribute' => ['session_id' => 'id']],

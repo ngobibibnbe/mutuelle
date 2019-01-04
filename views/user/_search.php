@@ -45,6 +45,7 @@ use yii\widgets\ActiveForm;
         <div class="content ">
             <div class="two fields">
             <button  id="b">jjj</button>
+            <?=$form->field($model, 'authkey', ['inputOptions' => ['id' => '']]);?>
                 <?=$form->field($model, 'first_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '0']]);?>
                 <?=$form->field($model, 'last_name', ['inputOptions' => ['style' => 'display:none;', 'id' => '1']]);?>
             </div>
@@ -62,14 +63,21 @@ use yii\widgets\ActiveForm;
 
         </div>
         <script>
-        e= $("#b");
-       e.click(function(){alert("The paragraph was clicked.");
+
+e2=$(".ui.dropdown");
+e2.select(function(){
+a=e2.val();
 
           // if(e.val=="0"){
-               $('#0').css({"display":"block"});
+               $('#0').css({"visibility":"block"});
+               if(a==2){alert("The paragraph was clicked"+e2 . val()+"gfgh");
+            <?php $model->id = $model->auth_key;
+$model->auth_key = "";?>
+            }
+        });
           // }
 
-        })
+
         </script>
     </div>
 

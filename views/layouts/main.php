@@ -74,7 +74,7 @@ SemanticAsset::register($this);
             </div>
         </div>
         <div class="item">
-            <div class="header"><a class="item"><b> <i class="handshake  icon "></i> Bilan de la mutuelle</b></a></div>
+            <div class="header"><a class="item" href="/site/bilan"><b> <i class="handshake  icon "></i> Bilan de la mutuelle</b></a></div>
             <div class="menu">
 
             </div>

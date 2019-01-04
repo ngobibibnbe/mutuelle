@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models;
 use app\models\ContactForm;
 use app\models\LoginForm;
+use DateInterval;
+use DateTime;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -64,7 +66,7 @@ class SiteController extends Controller
     {$connection = \Yii::$app->db;
 
         $model = new LoginForm();
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || (Yii::$app->user->identity->is_active == 0 && Yii::$app->user->identity->is_admin == 0)) {
             $this->redirect('site/login');
         } else { $transaction = $connection->beginTransaction();
 
@@ -112,6 +114,39 @@ class SiteController extends Controller
                     ->limit(5)
                     ->all();
 
+                $rappels = models\Emprunt::find()
+                    ->all();
+                foreach ($rappels as $rappel) {
+
+                    $date = new DateTime($rappel->created_at);
+                    $date->add(new DateInterval('P' . $rappel->delay . 'M'));
+                    date_default_timezone_set('Europe/Paris');
+
+                    $cond = ($date->format('Y-m-d H:i:s') > date("Y-m-d H:i:s"));
+
+                    if ($date->format('Y-m-d H:i:s') < date("Y-m-d H:i:s")) {
+
+                        $command = $connection->createCommand('UPDATE user SET is_active=0 WHERE id=' . $rappel->user_id . '');
+
+                        $command->execute();
+
+                    }
+                    $r = $rappel->states + 1;
+                    $dates = new DateTime($rappel->created_at);
+
+                    // $emprunt = date("Y-m-d H:i:s");
+                    if (date("Y-m-d H:i:s") > $dates->add(new DateInterval('P' . $rappel->states . 'M'))->format('Y-m-d H:i:s')
+                    ) {
+
+                        $commande = $connection->createCommand('UPDATE emprunt SET states=' . $r . ' WHERE user_id=' . $rappel->user_id . '');
+                        $commande->execute();
+                        $commande = $connection->createCommand('UPDATE emprunt SET amount=' . $rappel->amount * (1 + ($rappel->percentage / 100)) . ' WHERE id=' . $rappel->id . '');
+                        $commande->execute();
+
+                    }
+
+                }
+
                 $transaction->commit();
             } catch (Exception $e) {
                 $transaction->rollback();
@@ -146,6 +181,15 @@ class SiteController extends Controller
         return $this->renderPartial('login', [
             'model' => $model,
         ]);
+    }
+    public function actionBilan()
+    {
+        $model = models\User::find()
+            ->all();
+        return $this->render('bilan', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
