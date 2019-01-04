@@ -57,11 +57,6 @@ class SiteController extends Controller
         ];
     }
 
-
-
-
-
-
     /**
      * Displays homepage.
      *
@@ -188,11 +183,61 @@ class SiteController extends Controller
         ]);
     }
     public function actionBilan()
-    {
+    {$connection = \Yii::$app->db;
+
         $model = models\User::find()
             ->all();
+
+        $connection = \Yii::$app->db;
+
+        try { $transaction = $connection->beginTransaction();
+
+            $userid = Yii::$app->user->identity->id;
+
+            $emprunts = models\Emprunt::find()
+            ;
+            $emprunt = $emprunts->sum('amount');
+
+            $epargnes = models\Epargne::find()
+            ;
+            $epargne = $epargnes->sum('money');
+
+            $social = Yii::$app->user->identity->social_font;
+
+            $gains = models\Gains::find()
+            ;
+            $gain = $gains->sum('gain');
+
+            foreach ($model as $user) {
+                $userid = $user->id;
+                $array = null;
+                $array[] = $user->image;
+                $array[] = $user->username;
+
+                $emprunts = models\Emprunt::find()
+                    ->where("user_id='" . $userid . "'");
+                $emprunt = $emprunts->sum('amount');
+                $array[] = $emprunt;
+                $epargnes = models\Epargne::find()
+                    ->where("user_id='" . $userid . "'");
+                $epargne = $epargnes->sum('money');
+                $array[] = $epargne;
+                $social = Yii::$app->user->identity->social_font;
+                $array[] = $social;
+                $gains = models\Gains::find()
+                    ->where("getter_id='" . $userid . "'");
+                $gain = $gains->sum('gain');
+                $array[] = $social;
+
+                $arrays[] = $array;} //$arrays[] = ["hj"];
+
+            $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollback();
+        }
         return $this->render('bilan', [
-            'model' => $model,
+            'model' => $model, 'arrays' => $arrays, 'epargne' => $epargne, 'social' => $social, 'gain' => $gain,
+            'emprunt' => $emprunt,
         ]);
 
     }
@@ -239,9 +284,4 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionBilan()
-    {
-        return $this->render('Bilan');
-    }
 }
-

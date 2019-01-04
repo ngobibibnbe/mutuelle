@@ -51,7 +51,34 @@ class RetraitController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
+    {$connection = \Yii::$app->db;
+
+        $model = $this->findModel($id);
+
+        $transaction = $connection->beginTransaction();
+        try {
+            $epargnes = models\Epargne::find()
+                ->where('select from retrait where user_id=' . $model->user_id . '')
+                ->all();
+            $b = $model->money;
+
+            foreach ($epargnes as $epargne) {
+                $a = $epargne->money = $epargne->money - $b;
+                if ($a >= 0) {
+                    $epargne->save();
+                    break;
+
+                }
+                $b = $a;
+                $epargne->money = 0;
+                $epargne->save();
+
+            }
+
+            $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollback();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
