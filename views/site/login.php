@@ -55,7 +55,7 @@ $this->title = 'Login';
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?=Html::submitButton('Se connecter', ['class' => 'ui black fluid button', 'name' => 'login-button']);?>
+                <?=Html::submitButton('Se connecter', ['class' => 'ui black   button', 'name' => 'login-button']);?>
             </div>
         </div>
         <br>

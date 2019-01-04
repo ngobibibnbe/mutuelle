@@ -2,8 +2,8 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\widgets\Pjax;
 use yii\i18n\Formatter;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserSearch */
@@ -33,7 +33,7 @@ $this->title = 'ENSP MUTUAL USER';
             'attribute' => 'image',
             'label' => '',
             'content' => function ($data) {
-                return '<img src="'. $data->image.'" class="ui avatar image"></img>';
+                return '<img src="' . $data->image . '" class="ui avatar image"></img>';
             },
         ],
         'first_name',
@@ -42,20 +42,20 @@ $this->title = 'ENSP MUTUAL USER';
         'email:email',
         [
             'attribute' => 'is_active',
-            'options' =>['class'=>'centered aligned'],
+            'options' => ['class' => 'centered aligned'],
             'label' => 'actif',
             'filter' => array("1" => "Active", "0" => "Inactive"),
             'content' => function ($data) {
-                $class =  Html::tag(
-                    'i','',
-                    ['class'=>$data->is_active===1?"large green checkmark icon":"large red close icon"]);
+                $class = Html::tag(
+                    'i', '',
+                    ['class' => $data->is_active === 1 ? "large green checkmark icon" : "large red close icon"]);
                 return $class;
             },
         ],
         [
-            'attribute'=>'social_font',
+            'attribute' => 'social_font',
             'content' => function ($data) {
-                return (new Formatter)->asInteger($data->social_font) ;
+                return (new Formatter)->asInteger($data->social_font);
             },
         ],
         "created_at:date:Date d'ajout",
@@ -67,21 +67,24 @@ $this->title = 'ENSP MUTUAL USER';
                 'update' => function ($url, $model) {
                     return Html::a(
                         '<i class="icon edit"></i>',
-                        $url,['class'=>'ui tiny basic circular icon button']);
+                        $url, ['class' => 'ui tiny basic circular icon button']);
                 },
-                'delete' => function ($url, $model) {
-                    return Html::a(
-                        '<span class="glyphicon glyphicon-user"> <i class="icon user times"></i> </span>',
-                        $url);
-                },
+                /*  'delete' => function ($url, $model) {
+            return Html::a(
+            '<span class="glyphicon glyphicon-user"> <i class="icon user times"></i> </span>',
+            $url);
+            },
+            /*'link' => function ($url, $model, $key) {
+            return Html::a('Action', $url);
+            },*/
             ],
         ],
     ],
     'rowOptions' => function ($model, $key, $index, $grid) {
-        $class = $model->getis_admin() ===1 ? 'positive' : '';
+        $class = $model->getis_admin() === 1 ? 'positive' : '';
         return array('key' => $key, 'index' => $index, 'class' => $class);
     },
-    'tableOptions' => ['class' => 'ui celled table']
+    'tableOptions' => ['class' => 'ui celled table'],
 ]);?>
 </div>
     <?php Pjax::end();?>

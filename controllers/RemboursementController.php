@@ -67,6 +67,7 @@ class RemboursementController extends Controller
     {$connection = \Yii::$app->db;
 
         $model = new Remboursement();
+$model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
