@@ -13,30 +13,50 @@ $this->params['breadcrumbs'][] = $this->title;
 <a class="ui red tag label"> Emprunt:<b><?php echo $emprunt; ?>Fcfa</b></a>
 <a class="ui teal tag label"> Gains:<b><?php echo $gain; ?>Fcfa</b></a>
 <a class="ui blue tag label ">action social: <b><?php echo $social; ?>Fcfa</b></a>
-<br><br><br>
-    <div class="ui five column stackable centered grid" >
+<br><br><br><div class="ui four cards">
+
     <?php foreach ($arrays as $array) {
 
-    echo ' <div class="column ">
-        <div class="ui raised segment">
-        <div class="ui placeholder">
+    echo ' <div class="card">
+    <div class="image">
+     <img src="' . $array[0] . '" alt="">
+    </div>
+    <div class="extra">
+    <p> <b>' . $array[1] . '</b>
+    ';if ($array[3] > 1000000) {
+        echo '<i class="star yellow icon"></i><i class="star yellow icon"></i><i class="star yellow icon"></i><i class="star yellow icon"></i>
+';} else if ($array[3] > 500000) {
+        echo '<i class="star yellow icon"></i><i class="star yellow icon"></i><i class="star yellow icon"></i>
+';} else if ($array[3] > 100000) {
+        echo '<i class="star yellow icon"></i><i class="star yellow icon"></i>
+';} else if ($array[3] > 50000) {
+        echo '<i class="star yellow icon"></i>
+';}
 
-            <div class="image header">
-            <div class="line">
-</div>
-            <div class="line"></div>
-            </div>
-            <div class="paragraph">
-            <div class="medium line">hg</div>
-            <div class="short line">j</div>
-            </div>
-        </div>
-        </div>
+    echo '</p>
+      <a class="ui tag label" style="margin:auto;"> Epargne:' . $array[3] . '</a>
+      <a class="ui red tag label" style="margin-left:5px;"> Dette:' . $array[2] . '</a>
+            <a class="ui teal tag label"> Gains:' . $array[5] . '</a>
+                  <a class="ui blue tag label "> Social:' . $array[4] . '</a>
 
-    </div>'
-    ;}?>
 
     </div>
+  </div>'
+    ;}?>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
 </div>
 </div>
 

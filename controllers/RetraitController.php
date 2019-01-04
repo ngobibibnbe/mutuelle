@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models;
 use app\models\Retrait;
 use app\models\RetraitSearch;
 use Yii;
@@ -56,21 +57,29 @@ class RetraitController extends Controller
         $model = $this->findModel($id);
 
         $transaction = $connection->beginTransaction();
+        $b = 0;
         try {
-            $epargnes = models\Epargne::find()
-                ->where('select from retrait where user_id=' . $model->user_id . '')
-                ->all();
+            $epargnes = models\Epargne::findBySql('select * from epargne where user_id=' . $model->user_id . '');
+
+/*$total = $epargnes->sum('money');
+if ($total < $model->money) {
+return $this->render('create', [
+'model' => $this->findModel($id),
+]);
+
+}*/
+            $epargnes = $epargnes->all();
             $b = $model->money;
 
             foreach ($epargnes as $epargne) {
-                $a = $epargne->money = $epargne->money - $b;
-                if ($a >= 0) {
-                    $epargne->save();
-                    break;
+                $epargne->money = $epargne->money - $b;
+                /*  if ($a >= 0) {
+                $epargne->save();
+                break;
 
                 }
                 $b = $a;
-                $epargne->money = 0;
+                $epargne->money = 0;*/
                 $epargne->save();
 
             }
@@ -79,6 +88,7 @@ class RetraitController extends Controller
         } catch (Exception $e) {
             $transaction->rollback();
         }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -93,6 +103,15 @@ class RetraitController extends Controller
     {
         $model = new Retrait();
         $model->loadDefaultValues();
+        /* $epargnes = models\Epargne::findBySql('select * from epargne where user_id=' . $model->user_id . '');
+
+        $total = $epargnes->sum('money');
+        if ($total < $model->money) {
+        return $this->render('update', [
+        'model' => $this->findModel($id),
+        ]);
+
+        }*/
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -113,6 +132,15 @@ class RetraitController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        /*$epargnes = models\Epargne::findBySql('select * from epargne where user_id=' . $model->user_id . '');
+
+        $total = $epargnes->sum('money');
+        if ($total < $model->money) {
+        return $this->render('update', [
+        'model' => $this->findModel($id),
+        ]);
+
+        }*/
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
