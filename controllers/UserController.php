@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -21,10 +22,29 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update','create','view','index',],
+                'rules' => [
+                    [
+                        'actions' => ['create','update',],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' =>['index','view',],
+                        'allow' => true,
+                        'roles' => ['member'],
+                    ]
+                    
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'create' => ['POST'],
+                    'update' => ['POST']
                 ],
             ],
         ];
@@ -70,13 +90,16 @@ class UserController extends Controller
         if (Yii::$app->request->isPost) {
             $file = null;
             $file = \yii::getAlias('@web');
+            $auth = Yii::$app->authManager;
+            $memberRole = $auth->getRole('member');
+            $adminRole = $auth->getRole('admin');
 
             if ($model->load(Yii::$app->request->post())) {
                 $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
                 if ($model->upload() && $model->save()) {
+                    $model->is_admin === 1?$auth->assign($adminRole,$model->id):$auth->assign($memberRole,$model->id);
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
-
             }
         }
         $model->loadDefaultValues();
