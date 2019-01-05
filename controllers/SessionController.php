@@ -8,6 +8,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 
 /**
  * SessionController implements the CRUD actions for Session model.
@@ -20,10 +21,29 @@ class SessionController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update','create','view','index',],
+                'rules' => [
+                    [
+                        'actions' => ['create','update',],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' =>['index','view',],
+                        'allow' => true,
+                        'roles' => ['member'],
+                    ]
+                    
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'create' => ['POST','GET'],
+                    'update' => ['POST','GET']
                 ],
             ],
         ];

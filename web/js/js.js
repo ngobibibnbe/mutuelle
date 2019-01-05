@@ -12,11 +12,9 @@ $(document).ready(function () {
     $('#epargne').click(function () {
         $("#epargnemodal").modal('show');
     });
-
     $('#retrait').click(function () {
         $("#retraitmodal").modal('show');
     });
-
     $('#emprunt').click(function () {
         $("#empruntmodal").modal('show');
     });
@@ -26,11 +24,12 @@ $(document).ready(function () {
     $('#social').click(function () {
         $("#socialmodal").modal('show');
     });
-
     $('imageclickable').click(function () {
         $("ui.modal").modal('show');
     });
-
+	$('#userbutton').click(function () {
+		$("#usermodal").modal('show');
+	});
 
 
 

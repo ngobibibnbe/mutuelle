@@ -44,7 +44,7 @@ class UserController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                     'create' => ['POST','GET'],
-                    'update' => ['POST']
+                    'update' => ['POST','GET']
                 ],
             ],
         ];

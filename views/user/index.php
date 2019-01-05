@@ -14,10 +14,10 @@ $this->title = 'ENSP MUTUAL USER';
 ?>
 <div class="user-index" >
 
-    <h1><?=Html::encode($this->title)?></h1>
+
     <br><br>
     <?php Pjax::begin();?>
-    <p>
+    <p style="text-align:right">
         <?=Html::a('<i class="icon user plus"></i>Ajouter un utilisateur', ['create'], ['class' => 'ui right labeled icon primary button'])?>
     </p>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -36,6 +36,7 @@ $this->title = 'ENSP MUTUAL USER';
                 return '<img src="' . $data->image . '" class="ui avatar image"></img>';
             },
         ],
+		'id',
         'first_name',
         'last_name',
         'username',
@@ -62,21 +63,16 @@ $this->title = 'ENSP MUTUAL USER';
         ['class' => 'yii\grid\ActionColumn',
             'header' => 'Action',
             'headerOptions' => ['width' => '80'],
-            'template' => '{view} {update} {delete}{link}',
+            'template' => '{view} {update}',
             'buttons' => [
                 'update' => function ($url, $model) {
                     return Html::a(
                         '<i class="icon edit"></i>',
                         $url, ['class' => 'ui tiny basic circular icon button']);
                 },
-                /*  'delete' => function ($url, $model) {
-            return Html::a(
-            '<span class="glyphicon glyphicon-user"> <i class="icon user times"></i> </span>',
-            $url);
-            },
-            /*'link' => function ($url, $model, $key) {
-            return Html::a('Action', $url);
-            },*/
+                'view' => function ($url, $model) {
+					return Html::a('<i class="eye icon"></i>',$url,['class' => 'ui tiny basic circular icon button']);
+				},
             ],
         ],
     ],
@@ -84,9 +80,11 @@ $this->title = 'ENSP MUTUAL USER';
         $class = $model->getis_admin() === 1 ? 'positive' : '';
         return array('key' => $key, 'index' => $index, 'class' => $class);
     },
-    'tableOptions' => ['class' => 'ui celled table'],
+    'tableOptions' => ['class' => 'ui definition celled tablet stackable striped collapsing table'],
 ]);?>
 </div>
     <?php Pjax::end();?>
 </div>
+<?php
+
 

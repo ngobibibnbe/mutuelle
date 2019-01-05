@@ -49,12 +49,10 @@ SemanticAsset::register($this);
 
 
     <div class="item logo">
-            <img src="<?=Yii::$app->user->identity->image ;?>" class="ui small avatar image">
-            <div class="icon header"> <a class="item"><b> <i class="user icon"></i> profils</b></a></div>
-            <div class="menu">
+            <img style="margin:auto" src="<?=Yii::$app->user->identity->image ;?>" class="ui small circular image">
 
-            </div>
         </div>
+		<div class="icon header item"> <a href="/user/view?id=<?=Yii::$app->user->identity->id;?>" class="item"><b> <i class="user icon"></i> profil</b></a></div>
 
         <div class="item">
             <div class="header"><a class="item" href="/session/index"><b><i class="plus icon"></i> nouvelle session</b></a></div>
@@ -135,7 +133,7 @@ echo Menu::widget([
     <div class="ui footer inverted vertical segment">
         <div class="ui center aligned container">
             <p class="ui left inline">
-                &copy; My Company
+                &copy;Mutuelle
                 <?=date('Y');?>
             </p>
 
