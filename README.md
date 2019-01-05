@@ -2,7 +2,7 @@
     <a href="https://github.com/CHRV" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Projet d'IHM Gestion: de mutuelle</h1>
+    <h1 align="center">Projet d'IHM: Gestion de mutuelle</h1>
     <br>
 </p>
 
