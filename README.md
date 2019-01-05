@@ -24,10 +24,10 @@ DIRECTORY STRUCTURE
 
 
 
-REQUIREMENTS
-------------
+PREREQUIS
+---------
 
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
+PHP 7.2.^
 
 
 INSTALLATION
@@ -36,19 +36,12 @@ INSTALLATION
 ### Install
 
 
-
 ~~~
 php composer install
 php yii migrate --migrationPath=@yii/rbac/migrations
 php yii rbac/init
 php yii migrate
 ~~~
-
-
-
-
-
-
 
 CONFIGURATION
 -------------
@@ -66,6 +59,15 @@ return [
     'charset' => 'utf8',
 ];
 ```
+
+EXCECUTION
+----------
+php yii serve
+
+
+Dans l'interface d'authentification le nom d'utilisateur et le mot de passe sont `admin`
+
+
 
 
 
