@@ -4,44 +4,111 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
+use app\assets\SemanticAsset;
+use app\widgets\ActiveForm;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+
+SemanticAsset::register($this);
 
 $this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<?php $this->beginPage();?>
+<!DOCTYPE html>
+<html>
 
-    <p>Please fill out the following fields to login:</p>
+<head>
+    <meta charset="utf-8" />
+    <title><?=$this->title?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?=Html::csrfMetaTags();?>
+    <title>
+        <?=Html::encode($this->title);?>
+    </title>
+    <?php $this->head();?>
+</head>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+<body>
+    <?php $this->beginBody();?>
+    <div class="ui site-login">
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+        <?php $form = ActiveForm::begin(
+    [
+        'options' => ['class' => 'ui form raised segment', 'id' => 'login-form'],
+    ]);?>
+        <?=Html::tag('h1', Html::encode($this->title), [
+    'class' => 'ui dividing header center aligned',
+    'style' => 'margin-bottom:100px',
+]);?>
+
+        <?=$form->field($model, 'username')->textInput(['autofocus' => true])->label("Nom d'utilisateur");?>
+
+        <?=$form->field($model, 'password')->passwordInput()->label('Mot de passe');?>
+
+        <?=Html::tag(
+    'div',
+    Html::tag('input', '', ['type' => 'checkbox', 'name' => 'LoginForm[rememberMe]'])
+    . Html::tag('label', 'Se souvenir de moi') . '<br>',
+    ['class' => 'ui checkbox']
+);?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?=Html::submitButton('Se connecter', ['class' => 'ui black   button', 'name' => 'login-button']);?>
             </div>
         </div>
+        <br>
+        <div class="ui message" style="color:#999;">
+            Veuillez remplir les champs ci dessus pour vous connecter.
+        </div>
 
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end();?>
 
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+
+
     </div>
-</div>
+    <?php $this->endBody();?>
+    <script>
+        $(document).ready(function () {
+            $('.ui.form').submit(function (event) {
+                if ($('.error').length === 0)
+                    $('.ui.form').addClass('loading');
+            });
+        });
+    </script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            display: table;
+        }
+
+        .site-login {
+            vertical-align: middle;
+            /*text-align:center;*/
+            display: table-cell;
+            width: 100%;
+        }
+
+        #login-form {
+            margin: auto;
+            max-width: 400px
+        }
+
+        .ui.red {
+            color: #9f3a38;
+            text-align: center;
+        }
+    </style>
+</body>
+
+</html>
+<?php $this->endPage();?>
