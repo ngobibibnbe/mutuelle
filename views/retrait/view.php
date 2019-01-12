@@ -33,9 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'session_id',
         'user_id',
         'money',
-        'state',
-        'created_at',
-        'auth_key',
+        'created_at:datetime',
     ],
 ])?>
 
