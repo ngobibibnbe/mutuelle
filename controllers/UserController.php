@@ -119,9 +119,17 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            $auth = Yii::$app->authManager;
+            $memberRole = $auth->getRole('member');
+            $adminRole = $auth->getRole('admin');
+
+            if ($model->load(Yii::$app->request->post())) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                if ($model->upload() && $model->save()) {
+                    $model->is_admin === 1?$auth->assign($adminRole,$model->id):$auth->assign($memberRole,$model->id);
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
 
         return $this->render('update', [
             'model' => $model,
