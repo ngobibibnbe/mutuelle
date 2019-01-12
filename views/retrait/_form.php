@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
     <?php //$form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?=Html::submitButton('Save', ['class' => 'btn btn-success green'])?>
+        <?=Html::submitButton('Enregistrer', ['class' => 'btn btn-success green'])?>
     </div>
 
     <?php ActiveForm::end();?>

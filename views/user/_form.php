@@ -54,7 +54,7 @@ $form->field($model, 'is_active')->checkbox(array(
     <?php //$form->field($model, 'auth_key')->textInput(['maxlength' => true])?>
 
     <div class="form-group">
-        <?=Html::submitButton('Save', ['class' => 'btn btn-success'])?>
+        <?=Html::submitButton('Enregistrer', ['class' => 'btn btn-success'])?>
     </div>
 
     <?php ActiveForm::end();?>

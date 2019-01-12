@@ -108,6 +108,22 @@ $this->title = Yii::$app->user->identity->username;
                         <p> Vous avezfait cet epargne à la session  N°' . $epargne->session_id . '</p>
                     </td></tr>'
     ;}?>
+    <?php foreach ($sessions as $epargne) {
+    echo '
+                <tr>
+                    <td class="t">
+                        <p>Sessions</p>
+                    </td>
+                    <td><p>' ;
+                    echo  $epargne->date==0 ?'Ferme' : 'ouvert'. '</p>
+                    </td>
+                    <td>
+                        <p>' . $epargne->date . '</p>
+                    </td>
+                    <td>
+                        <p> Cette session est la session  N°' . $epargne->id . '</p>
+                    </td></tr>'
+    ;}?>
     <?php foreach ($retraits as $epargne) {
     echo '
                 <tr>

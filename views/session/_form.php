@@ -39,9 +39,11 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?=Html::submitButton('Save', ['class' => 'btn btn-success green'])?>
+        <?=Html::submitButton('Enregistrer', ['class' => 'btn btn-success green'])?>
     </div>
 
     <?php ActiveForm::end();?>
 
 </div>
+<?php
+\app\assets\AppAsset::register($this);

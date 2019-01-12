@@ -82,8 +82,12 @@ class RemboursementController extends Controller
             $emprunt->amount = $emprunt->amount - $model->amount;
             $emprunt->save();
             if ($emprunt->amount <= 0) {
-                $emprunt = models\Emprunt::find($model->emprunt_id);
-                $emprunt->delete();
+                $connection->createCommand()
+                ->delete('emprunt', 'id='.$model->emprunt_id)
+                ->execute();
+                return $this->render('ok', [
+                   
+                ]);
             }
 
             $pourcentage = $emprunt->percentage;
