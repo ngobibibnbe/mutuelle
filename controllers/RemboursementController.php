@@ -6,10 +6,10 @@ use app\models;
 use app\models\Remboursement;
 use app\models\RemboursementSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
 
 /**
  * RemboursementController implements the CRUD actions for Remboursement model.
@@ -24,27 +24,27 @@ class RemboursementController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['update','create','view','index',],
+                'only' => ['update', 'create', 'view', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['create','update',],
+                        'actions' => ['create', 'update'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' =>['index','view',],
+                        'actions' => ['index', 'view'],
                         'allow' => true,
                         'roles' => ['member'],
-                    ]
-                    
+                    ],
+
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'create' => ['POST','GET'],
-                    'update' => ['POST','GET']
+                    'create' => ['POST', 'GET'],
+                    'update' => ['POST', 'GET'],
                 ],
             ],
         ];
@@ -81,10 +81,11 @@ class RemboursementController extends Controller
             $emprunt = models\Emprunt::findOne($model->emprunt_id);
             $emprunt->amount = $emprunt->amount - $model->amount;
             $emprunt->save();
-            if($emprunt->amount<=0 ){
-                $emprunt=models\Emprunt::find($model->emprunt_id);
-                $emprunt->delete();
+            if ($emprunt->amount <= 0) {
+                $emprunt = models\Emprunt::find($model->emprunt_id);
+                $emprunt->delete;
             }
+
             $pourcentage = $emprunt->percentage;
             $created_at = $emprunt->created_at;
             $epargnes = models\Epargne::find()
@@ -100,7 +101,6 @@ class RemboursementController extends Controller
                 $gain->gain = ($epargne->money * $model->amount) * $emprunt->percentage / (100 * $total);
                 $gain->save();
             }
-
 
             $transaction->commit();
         } catch (Exception $e) {
