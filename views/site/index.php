@@ -12,38 +12,50 @@ $this->title = Yii::$app->user->identity->username;
     <div class="ui center aligned grid">
     <div class="ui statistics">
 
-  <div class="blue statistic">
+<div class="blue statistic">
     <div class="value">
-      <p class=cadre><?=$emprunt == null ? "0" : $emprunt?> Fcfa</p>
+      <p class=cadre><?=$emprunt == null ? "0" : number_format($emprunt, 2, ',', '');
+?> Fcfa</p>
         <hr>
       <p><b class= "dette">Dette</b></p>
     </div>
 
   </div>
-  <div class="red statistic">
+
+<div class="red statistic">
     <div class="value">
-        <p class=cadre><?=$gain == null ? "0" : $gain?>Fcfa</p>
+        <p class=cadre><?=$gain == null ? "0" : number_format($gain, 2, ',', '');
+?>Fcfa</p>
             <hr>
         <p><b class= "dette">Gains</b></p>
     </div>
 
   </div>
-  <div class="purple statistic">
+
+<div class="purple statistic">
     <div class="value">
-        <p class=cadre><?=$epargne == null ? "0" : $epargne?>Fcfa</p>
+        <p class=cadre><?=$epargne == null ? "0" : number_format($epargne, 2, ',', '');
+?>Fcfa</p>
             <hr>
         <p><b class= "dette">Epargne </b></p>
     </div>
 
   </div>
-  <div class="pink statistic">
+
+<div class="pink statistic">
     <div class="value">
-        <p class=cadre><?=$social == null ? "0" : $social?>Fcfa </p>
+        <p class=cadre><?=$social == null ? "0" : number_format($social, 2, ',', '');
+?>Fcfa </p>
             <hr>
         <p><b class= "dette" >Font Social</b></p>
     </div>
 
   </div>
+
+
+
+
+
 
   </div>
 </div>

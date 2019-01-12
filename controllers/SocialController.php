@@ -52,7 +52,26 @@ class SocialController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
+    {$connection = \Yii::$app->db;
+        $model = $this->findModel($id);
+
+        $transaction = $connection->beginTransaction();
+        try { $users = models\User::find()->all();
+
+            foreach ($users as $user) {
+                if ($user->social_font >= $model->money) {
+                    $user->social_font = $user->social_font - $model->money;
+                } else {
+
+                }
+
+                $user->save();
+            }
+
+            $transaction->commit();
+        } catch (Exception $e) {
+            $transaction->rollback();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,30 +83,12 @@ class SocialController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {$connection = \Yii::$app->db;
+    {
 
         $model = new Social();
         $model->loadDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            $transaction = $connection->beginTransaction();
-            try { $users = models\User::find()->all();
-
-                foreach ($users as $user) {
-                    if ($user->social_font >= $model->money) {
-                        $user->social_font = $user->social_font - $model->money;
-                    } else {
-
-                    }
-
-                    $user->save();
-                }
-
-                $transaction->commit();
-            } catch (Exception $e) {
-                $transaction->rollback();
-            }
 
             return $this->redirect(['view', 'id' => $model->id]);
         }

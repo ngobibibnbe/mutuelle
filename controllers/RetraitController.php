@@ -6,6 +6,7 @@ use app\models;
 use app\models\Retrait;
 use app\models\RetraitSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -23,27 +24,27 @@ class RetraitController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['update','create','view','index',],
+                'only' => ['update', 'create', 'view', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['create','update',],
+                        'actions' => ['create', 'update'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' =>['index','view',],
+                        'actions' => ['index', 'view'],
                         'allow' => true,
                         'roles' => ['member'],
-                    ]
-                    
+                    ],
+
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'create' => ['POST','GET'],
-                    'update' => ['POST','GET']
+                    'create' => ['POST', 'GET'],
+                    'update' => ['POST', 'GET'],
                 ],
             ],
         ];
@@ -87,22 +88,22 @@ return $this->render('create', [
 ]);
 
 }*/
-            $epargnes = $epargnes->all();
+            /*$epargnes = $epargnes->all();
             $b = $model->money;
 
             foreach ($epargnes as $epargne) {
-                $epargne->money = $epargne->money - $b;
-                /*  if ($a >= 0) {
-                $epargne->save();
-                break;
-
-                }
-                $b = $a;
-                $epargne->money = 0;*/
-                $epargne->save();
+            $epargne->money = $epargne->money - $b;
+            /*  if ($a >= 0) {
+            $epargne->save();
+            break;
 
             }
+            $b = $a;
+            $epargne->money = 0;/
+            $epargne->save();
 
+            }
+             */
             $transaction->commit();
         } catch (Exception $e) {
             $transaction->rollback();

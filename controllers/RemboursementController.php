@@ -81,6 +81,10 @@ class RemboursementController extends Controller
             $emprunt = models\Emprunt::findOne($model->emprunt_id);
             $emprunt->amount = $emprunt->amount - $model->amount;
             $emprunt->save();
+            if($emprunt->amount<=0 ){
+                $emprunt=models\Emprunt::find($model->emprunt_id);
+                $emprunt->delete();
+            }
             $pourcentage = $emprunt->percentage;
             $created_at = $emprunt->created_at;
             $epargnes = models\Epargne::find()
@@ -96,6 +100,8 @@ class RemboursementController extends Controller
                 $gain->gain = ($epargne->money * $model->amount) * $emprunt->percentage / (100 * $total);
                 $gain->save();
             }
+
+
             $transaction->commit();
         } catch (Exception $e) {
             $transaction->rollback();

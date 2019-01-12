@@ -66,7 +66,7 @@ class SiteController extends Controller
     {$connection = \Yii::$app->db;
 
         $model = new LoginForm();
-        if (Yii::$app->user->isGuest || (Yii::$app->user->identity->is_active == 0 && Yii::$app->user->identity->is_admin == 0)) {
+        if (Yii::$app->user->isGuest || (Yii::$app->user->identity->is_active == 0 /*&& Yii::$app->user->identity->is_admin == 0*/)) {
             $this->redirect('site/login');
         } else { $transaction = $connection->beginTransaction();
 
@@ -76,11 +76,14 @@ class SiteController extends Controller
 
                 $emprunts = models\Emprunt::find()
                     ->where("user_id='" . $userid . "'");
+                $retraits = models\Retrait::find()
+                    ->where("user_id='" . $userid . "'");
+                $retrait = $retraits->sum('money');
                 $emprunt = $emprunts->sum('amount');
-
                 $epargnes = models\Epargne::find()
                     ->where("user_id='" . $userid . "'");
                 $epargne = $epargnes->sum('money');
+                $epargne = $epargne - $retrait;
 
                 $social = Yii::$app->user->identity->social_font;
 
