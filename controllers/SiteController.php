@@ -66,7 +66,7 @@ class SiteController extends Controller
     {$connection = \Yii::$app->db;
 
         $model = new LoginForm();
-        if (Yii::$app->user->isGuest || (Yii::$app->user->identity->is_active == 0 /*&& Yii::$app->user->identity->is_admin == 0*/)) {
+        if (Yii::$app->user->isGuest || (Yii::$app->user->identity->is_active == 0&& Yii::$app->user->identity->is_admin == 0)) {
             $this->redirect('site/login');
         } else { $transaction = $connection->beginTransaction();
 
@@ -122,7 +122,9 @@ class SiteController extends Controller
                 foreach ($rappels as $rappel) {
 
                     $date = new DateTime($rappel->created_at);
-                    $date->add(new DateInterval('P' . $rappel->delay . 'M'));
+                    //$date->add(new DateInterval('P' . $rappel->delay . 'M'));
+                    
+                     $date->modify("+1 minutes");
                     date_default_timezone_set('Europe/Paris');
 
                     $cond = ($date->format('Y-m-d H:i:s') > date("Y-m-d H:i:s"));

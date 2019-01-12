@@ -5,10 +5,10 @@ namespace app\controllers;
 use app\modelsEmpruntSearch;
 use app\models\Emprunt;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
 
 /**
  * EmpruntController implements the CRUD actions for Emprunt model.
@@ -23,27 +23,27 @@ class EmpruntController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['update','create','view','index',],
+                'only' => ['update', 'create', 'view', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['create','update',],
+                        'actions' => ['create', 'update'],
                         'allow' => true,
                         'roles' => ['admin'],
                     ],
                     [
-                        'actions' =>['index','view',],
+                        'actions' => ['index', 'view'],
                         'allow' => true,
                         'roles' => ['member'],
-                    ]
-                    
+                    ],
+
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'create' => ['POST','GET'],
-                    'update' => ['POST','GET']
+                    'create' => ['POST', 'GET'],
+                    'update' => ['POST', 'GET'],
                 ],
             ],
         ];
@@ -71,7 +71,9 @@ class EmpruntController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
+    { /*$model::findOne($id);
+    $model->amount = $model->amount * $model->delay;
+    $model->save();*/
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

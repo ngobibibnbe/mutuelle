@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models;
+use app\models\Emprunt;
 use app\models\Remboursement;
 use app\models\RemboursementSearch;
 use Yii;
@@ -81,10 +82,12 @@ class RemboursementController extends Controller
             $emprunt = models\Emprunt::findOne($model->emprunt_id);
             $emprunt->amount = $emprunt->amount - $model->amount;
             $emprunt->save();
-            if ($emprunt->amount <= 0) {
-                $emprunt = models\Emprunt::find($model->emprunt_id);
-                $emprunt->delete();
-            }
+            /* if ($emprunt->amount <= 0) {
+            $conn = $connection->createCommand()
+            ->delete('emprunt', 'id=' . $model->emprunt_id)
+            ->execute();
+
+            }*/
 
             $pourcentage = $emprunt->percentage;
             $created_at = $emprunt->created_at;
