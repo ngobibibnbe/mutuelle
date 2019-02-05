@@ -116,15 +116,20 @@ class SiteController extends Controller
                     ->where("getter_id='" . $userid . "'")
                     ->limit(5)
                     ->all();
-
+                  
                 $rappels = models\Emprunt::find()
                     ->all();
                 foreach ($rappels as $rappel) {
 
                     $date = new DateTime($rappel->created_at);
+<<<<<<< HEAD
                     //$date->add(new DateInterval('P' . $rappel->delay . 'M'));
                     
                      $date->modify("+1 minutes");
+=======
+                    //
+                    $date->add(new DateInterval('P' . $rappel->delay . 'M'));
+>>>>>>> e739e5d9e2c3ec3ab50e2e630f697f2655c31b0c
                     date_default_timezone_set('Europe/Paris');
 
                     $cond = ($date->format('Y-m-d H:i:s') > date("Y-m-d H:i:s"));
